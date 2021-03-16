@@ -16,7 +16,8 @@ object ScreenBeagleBuilder : ScreenBuilder {
             child = Container(
                     children = listOf(
                             Text(
-                                    text = "Hello Beagle!"
+                                    text = "Hello Beagle!",
+                                    styleId = ""
                             ).applyStyle(
                                     Style(margin = EdgeValue(top = 16.unitReal()),
                                             flex = Flex(alignSelf = AlignSelf.CENTER)
