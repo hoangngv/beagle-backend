@@ -17,20 +17,50 @@
 package com.vt.beaglebff.builder
 
 import br.com.zup.beagle.core.Style
+import br.com.zup.beagle.ext.applyFlex
 import br.com.zup.beagle.ext.applyStyle
 import br.com.zup.beagle.ext.unitReal
+import br.com.zup.beagle.widget.action.Alert
 import br.com.zup.beagle.widget.core.AlignSelf
 import br.com.zup.beagle.widget.core.EdgeValue
 import br.com.zup.beagle.widget.core.Flex
-import br.com.zup.beagle.widget.layout.Container
-import br.com.zup.beagle.widget.layout.Screen
-import br.com.zup.beagle.widget.layout.ScreenBuilder
+import br.com.zup.beagle.widget.layout.*
 import br.com.zup.beagle.widget.ui.Button
+import br.com.zup.beagle.widget.ui.ImagePath
 import br.com.zup.beagle.widget.ui.Text
 import com.vt.beaglebff.components.actions.ToastAction
 
 object FirstScreenBeagleBuilder : ScreenBuilder {
+
+//    override fun build() =  Screen(
+//            navigationBar = NavigationBar(
+//                    title = "Beagle Screen",
+//                    navigationBarItems = listOf(
+//                            NavigationBarItem(
+//                                    text = "",
+//                                    image = ImagePath.Local.justMobile("informationImage"),
+//                                    action = ToastAction("Helloooooo")
+//                            )
+//                    )
+//            ),
+//            child = Container(
+//                    children = listOf(
+//                            Text("Some text")
+//                    )
+//            )
+//    )
+
     override fun build() = Screen(
+            navigationBar = NavigationBar(
+                    title = "Personal",
+                    navigationBarItems = listOf(
+                            NavigationBarItem(
+                                    text = "",
+                                    image = ImagePath.Local.justMobile("informationImage"),
+                                    action = ToastAction("Ask for help")
+                            )
+                    )
+            ),
             child = Container(
                     children = listOf(
                             Text(
@@ -57,7 +87,15 @@ object FirstScreenBeagleBuilder : ScreenBuilder {
                             ),
                             Button(
                                     text = "Press to toast welcome msg",
+                                    styleId = "button",
                                     onPress = listOf(ToastAction("Welcome from the backend!"))
+                            ).applyStyle(
+                                    Style(margin = EdgeValue(
+                                            top = 20.unitReal(),
+                                            left = 16.unitReal(),
+                                            right = 16.unitReal()
+                                        )
+                                    )
                             )
                     )
             )
