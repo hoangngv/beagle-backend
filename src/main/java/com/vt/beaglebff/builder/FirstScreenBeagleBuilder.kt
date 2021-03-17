@@ -25,7 +25,9 @@ import br.com.zup.beagle.widget.core.Flex
 import br.com.zup.beagle.widget.layout.Container
 import br.com.zup.beagle.widget.layout.Screen
 import br.com.zup.beagle.widget.layout.ScreenBuilder
+import br.com.zup.beagle.widget.ui.Button
 import br.com.zup.beagle.widget.ui.Text
+import com.vt.beaglebff.components.actions.ToastAction
 
 object FirstScreenBeagleBuilder : ScreenBuilder {
     override fun build() = Screen(
@@ -52,6 +54,10 @@ object FirstScreenBeagleBuilder : ScreenBuilder {
                                                     top = 20.unitReal()
                                             )
                                     )
+                            ),
+                            Button(
+                                    text = "Press to toast welcome msg",
+                                    onPress = listOf(ToastAction("Welcome from the backend!"))
                             )
                     )
             )

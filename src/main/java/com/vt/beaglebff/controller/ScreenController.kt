@@ -3,6 +3,7 @@ package com.vt.beaglebff.controller
 import com.vt.beaglebff.service.FirstScreenBeagleService
 import com.vt.beaglebff.service.LoginScreenService
 import com.vt.beaglebff.service.ScreenBeagleService
+import com.vt.beaglebff.service.SingleComponentService
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
 
@@ -10,7 +11,8 @@ import org.springframework.web.bind.annotation.RestController
 class ScreenController(
         private val screenBeagleService: ScreenBeagleService,
         private val firstScreenBeagleService: FirstScreenBeagleService,
-        private val loginScreenService: LoginScreenService
+        private val loginScreenService: LoginScreenService,
+        private val singleComponentService: SingleComponentService
 ) {
 
     @GetMapping("/screen")
@@ -21,4 +23,7 @@ class ScreenController(
 
     @GetMapping("/login")
     fun getLoginScreen() = loginScreenService.createLoginScreen()
+
+    @GetMapping("/buttonComponent")
+    fun getButtonComponent() = singleComponentService.createButtonComponent()
 }

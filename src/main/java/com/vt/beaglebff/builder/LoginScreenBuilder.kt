@@ -1,6 +1,5 @@
 package com.vt.beaglebff.builder
 
-import br.com.zup.beagle.builder.widget.flex
 import br.com.zup.beagle.core.CornerRadius
 import br.com.zup.beagle.core.Style
 import br.com.zup.beagle.ext.applyStyle
@@ -9,10 +8,8 @@ import br.com.zup.beagle.widget.action.Navigate
 import br.com.zup.beagle.widget.action.Route
 import br.com.zup.beagle.widget.action.SetContext
 import br.com.zup.beagle.widget.context.ContextData
-import br.com.zup.beagle.widget.core.AlignSelf
 import br.com.zup.beagle.widget.core.EdgeValue
 import br.com.zup.beagle.widget.core.Flex
-import br.com.zup.beagle.widget.core.FlexDirection
 import br.com.zup.beagle.widget.core.JustifyContent
 import br.com.zup.beagle.widget.core.TextInputType
 import br.com.zup.beagle.widget.layout.Container
@@ -24,6 +21,7 @@ import br.com.zup.beagle.widget.ui.Text
 import br.com.zup.beagle.widget.ui.TextInput
 
 class LoginScreenBuilder: ScreenBuilder {
+
     override fun build(): Screen {
         return Screen(
                 navigationBar = NavigationBar(
