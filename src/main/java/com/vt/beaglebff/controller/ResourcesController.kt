@@ -74,4 +74,14 @@ class ResourcesController(resourcesService: ResourcesService) {
                 .contentType(MediaType.IMAGE_PNG)
                 .body(InputStreamResource(imgFile.inputStream))
     }
+
+    @RequestMapping("/img_default_avatar", method = arrayOf(RequestMethod.GET), produces = arrayOf(MediaType.IMAGE_PNG_VALUE))
+    @Throws(IOException::class)
+    fun getDefaultAvatar(): ResponseEntity<InputStreamResource> {
+        val imgFile = ClassPathResource("images/img_default_avatar.png")
+        return ResponseEntity
+                .ok()
+                .contentType(MediaType.IMAGE_PNG)
+                .body(InputStreamResource(imgFile.inputStream))
+    }
 }

@@ -1,9 +1,6 @@
 package com.vt.beaglebff.controller
 
-import com.vt.beaglebff.service.FirstScreenBeagleService
-import com.vt.beaglebff.service.LoginScreenService
-import com.vt.beaglebff.service.PersonalScreenService
-import com.vt.beaglebff.service.SingleComponentService
+import com.vt.beaglebff.service.*
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
@@ -12,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/uiController")
 class UiController(
+        private val homeScreenService: HomeScreenService,
         private val personalScreenService: PersonalScreenService,
         private val firstScreenBeagleService: FirstScreenBeagleService,
         private val loginScreenService: LoginScreenService,
@@ -21,8 +19,11 @@ class UiController(
     @GetMapping("/screen")
     fun getFirstScreen() = firstScreenBeagleService.createScreenBeagle()
 
+    @GetMapping("/home")
+    fun getHomeScreen() = homeScreenService.createHomeScreen()
+
     @GetMapping("/personal")
-    fun getHomeScreen() = personalScreenService.createPersonalScreen()
+    fun getPersonalScreen() = personalScreenService.createPersonalScreen()
 
     @GetMapping("/login")
     fun getLoginScreen() = loginScreenService.createLoginScreen()
