@@ -84,4 +84,14 @@ class ResourcesController(resourcesService: ResourcesService) {
                 .contentType(MediaType.IMAGE_PNG)
                 .body(InputStreamResource(imgFile.inputStream))
     }
+
+    @RequestMapping("/img_tnxh", method = arrayOf(RequestMethod.GET), produces = arrayOf(MediaType.IMAGE_JPEG_VALUE))
+    @Throws(IOException::class)
+    fun getBanner1(): ResponseEntity<InputStreamResource> {
+        val imgFile = ClassPathResource("images/img_te_nan_xa_hoi.jpeg")
+        return ResponseEntity
+                .ok()
+                .contentType(MediaType.IMAGE_JPEG)
+                .body(InputStreamResource(imgFile.inputStream))
+    }
 }
