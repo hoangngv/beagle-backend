@@ -1,17 +1,8 @@
 package com.vt.beaglebff.builder
 
-import br.com.zup.beagle.builder.widget.size
-import br.com.zup.beagle.core.CornerRadius
-import br.com.zup.beagle.core.Style
-import br.com.zup.beagle.ext.applyFlex
-import br.com.zup.beagle.ext.applyStyle
-import br.com.zup.beagle.ext.unitPercent
-import br.com.zup.beagle.ext.unitReal
-import br.com.zup.beagle.widget.action.Alert
-import br.com.zup.beagle.widget.action.SetContext
+import br.com.zup.beagle.core.*
+import br.com.zup.beagle.ext.*
 import br.com.zup.beagle.widget.context.ContextData
-import br.com.zup.beagle.widget.context.expressionOf
-import br.com.zup.beagle.widget.context.valueOf
 import br.com.zup.beagle.widget.core.*
 import br.com.zup.beagle.widget.layout.*
 import br.com.zup.beagle.widget.pager.PageIndicator
@@ -22,7 +13,9 @@ class HomeScreenBuilder : ScreenBuilder {
         return Screen(
                 child = Container(
                         children = listOf(
-                                createBannerView()
+                                createToolbar(),
+                                createBannerView(),
+                                createBottomNavigationBar()
                         )
                 )
         )
@@ -50,21 +43,50 @@ class HomeScreenBuilder : ScreenBuilder {
             )
     ).applyStyle(
             Style(
-                    flex = Flex(grow = 0.0),
                     size = Size(width = 100.unitPercent(), height = 50.unitPercent())
             )
     ).applyFlex(
-            Flex(alignSelf = AlignSelf.CENTER)
+            Flex(alignSelf = AlignSelf.CENTER, justifyContent = JustifyContent.FLEX_START)
     )
 
-    private fun createBannerImage(remoteUrl: String) =
-        Image(
-                path = ImagePath.Remote(remoteUrl),
-                mode = ImageContentMode.CENTER_CROP
-        ).applyStyle(
-                Style(
-                        margin = EdgeValue(all = 16.unitReal()),
-                        cornerRadius = CornerRadius(32.0)
-                )
-        )
+    private fun createToolbar() = Container(
+            listOf(
+                    Text("")
+            )
+    ).applyStyle(
+            Style(backgroundColor = "#0F8E70",
+                    size = Size(width = 100.unitPercent(), height = 56.unitReal()),
+                    position = EdgeValue(0.unitReal()),
+                    positionType = PositionType.RELATIVE)
+
+    ).applyFlex(
+            Flex(alignSelf = AlignSelf.CENTER, justifyContent = JustifyContent.FLEX_START)
+    ).setId("widget")
+
+    private fun createBannerImage(remoteUrl: String) = Image(
+            path = ImagePath.Remote(remoteUrl),
+            mode = ImageContentMode.CENTER_CROP
+    ).applyStyle(
+            Style(
+                    margin = EdgeValue(all = 16.unitReal()),
+                    cornerRadius = CornerRadius(32.0)
+            )
+    )
+
+    private fun createBottomNavigationBar() = Container(
+            children = listOf(
+                    TabView(children =
+                    listOf(
+                            TabItem("Tab 1",
+                                    Text("First Tab Content").applyFlex(flex = Flex(grow = 1.0))
+                            ),
+                            TabItem("Tab 2",
+                                    Text("Second Tab Content").applyFlex(flex = Flex(grow = 1.0))
+                            )
+                    )
+                    )
+            )
+    ).applyFlex(
+            Flex(alignSelf = AlignSelf.CENTER, justifyContent = JustifyContent.FLEX_END)
+    )
 }

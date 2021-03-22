@@ -45,13 +45,7 @@ class LoginScreenBuilder: ScreenBuilder {
                                 TextInput(
                                         placeholder = "CPF ou CNPJ",
                                         type = TextInputType.NUMBER,
-                                        styleId = "TextInput",
-                                        onChange = listOf(
-                                                SetContext(
-                                                        contextId = "credential",
-                                                        value = "@{onChange.value}"
-                                                )
-                                        )
+                                        styleId = "TextInput"
 
                                 ).applyStyle(Style(margin = EdgeValue(horizontal = 8.unitReal()))),
                                 createdButton()
@@ -72,14 +66,7 @@ class LoginScreenBuilder: ScreenBuilder {
                 children = listOf(
                         Button(
                                 text = "continuar",
-                                styleId = "button",
-                                onPress = listOf(
-                                        SetContext(
-                                                contextId = "global",
-                                                value = "@{credential}"
-                                        ),
-                                        Navigate.PushView(route = Route.Remote("/password",shouldPrefetch = true))
-                                )
+                                styleId = "button"
                         ).applyStyle(
                                 Style(
                                         cornerRadius = CornerRadius(radius = 20.0)
