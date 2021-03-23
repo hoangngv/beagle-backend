@@ -2,6 +2,8 @@ package com.vt.beaglebff.builder
 
 import br.com.zup.beagle.core.*
 import br.com.zup.beagle.ext.*
+import br.com.zup.beagle.widget.action.Navigate
+import br.com.zup.beagle.widget.action.Route
 import br.com.zup.beagle.widget.context.ContextData
 import br.com.zup.beagle.widget.context.expressionOf
 import br.com.zup.beagle.widget.core.*
@@ -11,6 +13,7 @@ import br.com.zup.beagle.widget.pager.PageIndicator
 import br.com.zup.beagle.widget.ui.*
 import com.vt.beaglebff.components.actions.ToastAction
 import br.com.zup.beagle.widget.core.JustifyContent
+import com.vt.beaglebff.components.widgets.BottomNavigationView
 import com.vt.beaglebff.components.widgets.ItemRowDivider
 
 
@@ -19,9 +22,7 @@ class HomeScreenBuilder : ScreenBuilder {
         return Screen(
                 child = Container(
                         children = listOf(
-                                createToolbar(),
-                                createBannerView(),
-                                createBottomNavigationBar()
+                                createBottomNavigationView()
                         )
                 ).applyStyle(
                         Style(
@@ -55,7 +56,7 @@ class HomeScreenBuilder : ScreenBuilder {
             )
     ).applyStyle(
             Style(
-                    size = Size(width = 100.unitPercent(), height = 50.unitPercent())
+                    size = Size(width = 100.unitPercent(), height = 25.unitPercent())
             )
     ).applyFlex(
             Flex(
@@ -66,7 +67,18 @@ class HomeScreenBuilder : ScreenBuilder {
 
     private fun createToolbar() = Container(
             listOf(
-                    Text("")
+                    Text(
+                            text = "Xin chào",
+                            textColor = "#FFFFFF",
+                            styleId = "NormalText",
+                            alignment = TextAlignment.CENTER
+                    ).applyStyle(
+                            style = Style(
+                                    margin = EdgeValue(
+                                            all = 8.unitReal()
+                                    )
+                            )
+                    )
             )
     ).applyStyle(
             Style(backgroundColor = "#3596EC",
@@ -88,9 +100,44 @@ class HomeScreenBuilder : ScreenBuilder {
     ).applyStyle(
             Style(
                     margin = EdgeValue(all = 16.unitReal()),
-                    cornerRadius = CornerRadius(32.0)
+                    cornerRadius = CornerRadius(48.0)
             )
     )
+
+    private fun createBottomNavigationView() : Container {
+        val menuItems = ArrayList<Array<String>>()
+
+        menuItems.add(arrayOf(
+                "http://10.0.2.2:8080/resourcesController/ic_account_info",
+                "Home",
+                "/uiController/home")
+        )
+
+        menuItems.add(arrayOf(
+                "http://10.0.2.2:8080/resourcesController/ic_account_info",
+                "Requests",
+                "/uiController/home")
+        )
+
+        menuItems.add(arrayOf(
+                "http://10.0.2.2:8080/resourcesController/ic_account_info",
+                "Tasks",
+                "/uiController/home")
+        )
+
+        return Container(
+                children = listOf(
+                        BottomNavigationView(menuItems)
+                )
+        ).applyStyle(
+                Style(
+                        flex = Flex(
+                                justifyContent = JustifyContent.FLEX_END,
+                                grow = 1.0
+                        )
+                )
+        )
+    }
 
     private fun createBottomNavigationBar() = Container(
             children = listOf(
@@ -180,6 +227,16 @@ class HomeScreenBuilder : ScreenBuilder {
                             margin = EdgeValue(all = 8.unitReal())
                     )
             ),
-            onPress = listOf(ToastAction(text))
+            onPress = listOf(
+                    ToastAction(text)
+            )
+    )
+
+    private fun buildScreen(): Screen = Screen(
+            child = Container(
+                    children = listOf(
+                            Text("hello")
+                    )
+            )
     )
 }

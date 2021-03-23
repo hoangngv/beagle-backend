@@ -15,7 +15,6 @@ class UiController(
         private val loginScreenService: LoginScreenService,
         private val singleComponentService: SingleComponentService
 ) {
-
     @GetMapping("/screen")
     fun getFirstScreen() = firstScreenBeagleService.createScreenBeagle()
 
@@ -30,4 +29,11 @@ class UiController(
 
     @GetMapping("/buttonComponent")
     fun getButtonComponent() = singleComponentService.createButtonComponent()
+
+    @GetMapping("/bottomNavigationView")
+    fun getHomeScreenBottomNavigationView() = singleComponentService.createBottomNavigationView()
+
+    @GetMapping("/banner")
+    fun getHomeScreenBannerView() = singleComponentService.createBannerView()
+
 }

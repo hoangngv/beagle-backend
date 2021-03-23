@@ -7,4 +7,9 @@ import org.springframework.stereotype.Service
 class SingleComponentService {
 
     fun createButtonComponent() = SingleComponentBuilder().createButton()
+
+    fun createBottomNavigationView() = SingleComponentBuilder().createBottomNavigationView()
+
+    fun createBannerView() = SingleComponentBuilder().createBannerView()
+
 }
