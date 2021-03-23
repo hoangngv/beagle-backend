@@ -33,19 +33,19 @@ class SingleComponentBuilder() {
         val menuItems = ArrayList<Array<String>>()
 
         menuItems.add(arrayOf(
-                "http://10.0.2.2:8080/resourcesController/ic_account_info",
+                "http://10.0.2.2:8080/resourcesController/ic_home",
                 "Home",
                 "/uiController/home")
         )
 
         menuItems.add(arrayOf(
-                "http://10.0.2.2:8080/resourcesController/ic_account_info",
+                "http://10.0.2.2:8080/resourcesController/ic_request",
                 "Requests",
                 "/uiController/home")
         )
 
         menuItems.add(arrayOf(
-                "http://10.0.2.2:8080/resourcesController/ic_account_info",
+                "http://10.0.2.2:8080/resourcesController/ic_task",
                 "Tasks",
                 "/uiController/home")
         )

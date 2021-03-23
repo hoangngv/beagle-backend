@@ -94,4 +94,44 @@ class ResourcesController(resourcesService: ResourcesService) {
                 .contentType(MediaType.IMAGE_JPEG)
                 .body(InputStreamResource(imgFile.inputStream))
     }
+
+    @RequestMapping("/ic_home", method = arrayOf(RequestMethod.GET), produces = arrayOf(MediaType.IMAGE_PNG_VALUE))
+    @Throws(IOException::class)
+    fun getHomeIcon(): ResponseEntity<InputStreamResource> {
+        val imgFile = ClassPathResource("home_icons/ic_home_outlined.png")
+        return ResponseEntity
+                .ok()
+                .contentType(MediaType.IMAGE_PNG)
+                .body(InputStreamResource(imgFile.inputStream))
+    }
+
+    @RequestMapping("/ic_request", method = arrayOf(RequestMethod.GET), produces = arrayOf(MediaType.IMAGE_PNG_VALUE))
+    @Throws(IOException::class)
+    fun getRequestIcon(): ResponseEntity<InputStreamResource> {
+        val imgFile = ClassPathResource("home_icons/ic_requests_outlined.png")
+        return ResponseEntity
+                .ok()
+                .contentType(MediaType.IMAGE_PNG)
+                .body(InputStreamResource(imgFile.inputStream))
+    }
+
+    @RequestMapping("/ic_task", method = arrayOf(RequestMethod.GET), produces = arrayOf(MediaType.IMAGE_PNG_VALUE))
+    @Throws(IOException::class)
+    fun getTaskIcon(): ResponseEntity<InputStreamResource> {
+        val imgFile = ClassPathResource("home_icons/ic_tasks_outlined.png")
+        return ResponseEntity
+                .ok()
+                .contentType(MediaType.IMAGE_PNG)
+                .body(InputStreamResource(imgFile.inputStream))
+    }
+
+    @RequestMapping("/ic_notification", method = arrayOf(RequestMethod.GET), produces = arrayOf(MediaType.IMAGE_PNG_VALUE))
+    @Throws(IOException::class)
+    fun getNotificationIcon(): ResponseEntity<InputStreamResource> {
+        val imgFile = ClassPathResource("home_icons/ic_notification_outlined.png")
+        return ResponseEntity
+                .ok()
+                .contentType(MediaType.IMAGE_PNG)
+                .body(InputStreamResource(imgFile.inputStream))
+    }
 }
