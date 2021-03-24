@@ -36,4 +36,15 @@ class UiController(
     @GetMapping("/banner")
     fun getHomeScreenBannerView() = singleComponentService.createBannerView()
 
+    @GetMapping("/tabHome")
+    fun getTabHome() = singleComponentService.createTabHome()
+
+    @GetMapping("/tabRequest")
+    fun getTabRequest() = singleComponentService.createTabRequest()
+
+    @GetMapping("/tabTask")
+    fun getTabTask() = singleComponentService.createTabTask()
+
+    @GetMapping("/tabNotification")
+    fun getTabNotification() = singleComponentService.createTabNotification()
 }

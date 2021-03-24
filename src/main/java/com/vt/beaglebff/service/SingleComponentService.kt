@@ -12,4 +12,11 @@ class SingleComponentService {
 
     fun createBannerView() = SingleComponentBuilder().createBannerView()
 
+    fun createTabHome() = SingleComponentBuilder().createTabHome()
+
+    fun createTabRequest() = SingleComponentBuilder().createTabRequest()
+
+    fun createTabTask() = SingleComponentBuilder().createTabTask()
+
+    fun createTabNotification() = SingleComponentBuilder().createTabNotification()
 }

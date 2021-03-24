@@ -105,6 +105,16 @@ class ResourcesController(resourcesService: ResourcesService) {
                 .body(InputStreamResource(imgFile.inputStream))
     }
 
+    @RequestMapping("/ic_home_filled", method = arrayOf(RequestMethod.GET), produces = arrayOf(MediaType.IMAGE_PNG_VALUE))
+    @Throws(IOException::class)
+    fun getHomeIconFilled(): ResponseEntity<InputStreamResource> {
+        val imgFile = ClassPathResource("home_icons/ic_home_filled.png")
+        return ResponseEntity
+                .ok()
+                .contentType(MediaType.IMAGE_PNG)
+                .body(InputStreamResource(imgFile.inputStream))
+    }
+
     @RequestMapping("/ic_request", method = arrayOf(RequestMethod.GET), produces = arrayOf(MediaType.IMAGE_PNG_VALUE))
     @Throws(IOException::class)
     fun getRequestIcon(): ResponseEntity<InputStreamResource> {
