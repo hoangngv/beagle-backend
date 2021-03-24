@@ -13,135 +13,83 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/resourcesController")
-class ResourcesController(resourcesService: ResourcesService) {
+class ResourcesController(private val resourcesService: ResourcesService) {
 
     @RequestMapping("/ic_account_info", method = arrayOf(RequestMethod.GET), produces = arrayOf(MediaType.IMAGE_PNG_VALUE))
     @Throws(IOException::class)
     fun getAccountInfoIcon(): ResponseEntity<InputStreamResource> {
-        val imgFile = ClassPathResource("images/ic_account_info.png")
-        return ResponseEntity
-                .ok()
-                .contentType(MediaType.IMAGE_PNG)
-                .body(InputStreamResource(imgFile.inputStream))
+        return resourcesService.getImage("images/ic_account_info.png", "PNG")
     }
 
     @RequestMapping("/ic_settings", method = arrayOf(RequestMethod.GET), produces = arrayOf(MediaType.IMAGE_PNG_VALUE))
     @Throws(IOException::class)
     fun getSettingIcon(): ResponseEntity<InputStreamResource> {
-        val imgFile = ClassPathResource("images/ic_settings.png")
-        return ResponseEntity
-                .ok()
-                .contentType(MediaType.IMAGE_PNG)
-                .body(InputStreamResource(imgFile.inputStream))
+        return resourcesService.getImage("images/ic_settings.png", "PNG")
     }
 
     @RequestMapping("/ic_change_password", method = arrayOf(RequestMethod.GET), produces = arrayOf(MediaType.IMAGE_PNG_VALUE))
     @Throws(IOException::class)
     fun getChangePasswordIcon(): ResponseEntity<InputStreamResource> {
-        val imgFile = ClassPathResource("images/ic_change_password.png")
-        return ResponseEntity
-                .ok()
-                .contentType(MediaType.IMAGE_PNG)
-                .body(InputStreamResource(imgFile.inputStream))
+        return resourcesService.getImage("images/ic_change_password.png", "PNG")
     }
 
     @RequestMapping("/ic_info", method = arrayOf(RequestMethod.GET), produces = arrayOf(MediaType.IMAGE_PNG_VALUE))
     @Throws(IOException::class)
     fun getInfoIcon(): ResponseEntity<InputStreamResource> {
-        val imgFile = ClassPathResource("images/ic_info.png")
-        return ResponseEntity
-                .ok()
-                .contentType(MediaType.IMAGE_PNG)
-                .body(InputStreamResource(imgFile.inputStream))
+        return resourcesService.getImage("images/ic_info.png", "PNG")
     }
 
     @RequestMapping("/ic_logout", method = arrayOf(RequestMethod.GET), produces = arrayOf(MediaType.IMAGE_PNG_VALUE))
     @Throws(IOException::class)
     fun getLogoutIcon(): ResponseEntity<InputStreamResource> {
-        val imgFile = ClassPathResource("images/ic_logout.png")
-        return ResponseEntity
-                .ok()
-                .contentType(MediaType.IMAGE_PNG)
-                .body(InputStreamResource(imgFile.inputStream))
+        return resourcesService.getImage("images/ic_logout.png", "PNG")
     }
 
     @RequestMapping("/ic_next", method = arrayOf(RequestMethod.GET), produces = arrayOf(MediaType.IMAGE_PNG_VALUE))
     @Throws(IOException::class)
     fun getNextIcon(): ResponseEntity<InputStreamResource> {
-        val imgFile = ClassPathResource("images/ic_next.png")
-        return ResponseEntity
-                .ok()
-                .contentType(MediaType.IMAGE_PNG)
-                .body(InputStreamResource(imgFile.inputStream))
+        return resourcesService.getImage("images/ic_next.png", "PNG")
     }
 
     @RequestMapping("/img_default_avatar", method = arrayOf(RequestMethod.GET), produces = arrayOf(MediaType.IMAGE_PNG_VALUE))
     @Throws(IOException::class)
     fun getDefaultAvatar(): ResponseEntity<InputStreamResource> {
-        val imgFile = ClassPathResource("images/img_default_avatar.png")
-        return ResponseEntity
-                .ok()
-                .contentType(MediaType.IMAGE_PNG)
-                .body(InputStreamResource(imgFile.inputStream))
+        return resourcesService.getImage("images/img_default_avatar.png", "PNG")
     }
 
     @RequestMapping("/img_tnxh", method = arrayOf(RequestMethod.GET), produces = arrayOf(MediaType.IMAGE_JPEG_VALUE))
     @Throws(IOException::class)
     fun getBanner1(): ResponseEntity<InputStreamResource> {
-        val imgFile = ClassPathResource("images/img_te_nan_xa_hoi.jpeg")
-        return ResponseEntity
-                .ok()
-                .contentType(MediaType.IMAGE_JPEG)
-                .body(InputStreamResource(imgFile.inputStream))
+        return resourcesService.getImage("images/img_te_nan_xa_hoi.jpeg", "JPEG")
     }
 
     @RequestMapping("/ic_home", method = arrayOf(RequestMethod.GET), produces = arrayOf(MediaType.IMAGE_PNG_VALUE))
     @Throws(IOException::class)
     fun getHomeIcon(): ResponseEntity<InputStreamResource> {
-        val imgFile = ClassPathResource("home_icons/ic_home_outlined.png")
-        return ResponseEntity
-                .ok()
-                .contentType(MediaType.IMAGE_PNG)
-                .body(InputStreamResource(imgFile.inputStream))
+        return resourcesService.getImage("home_icons/ic_home_outlined.png", "PNG")
     }
 
     @RequestMapping("/ic_home_filled", method = arrayOf(RequestMethod.GET), produces = arrayOf(MediaType.IMAGE_PNG_VALUE))
     @Throws(IOException::class)
     fun getHomeIconFilled(): ResponseEntity<InputStreamResource> {
-        val imgFile = ClassPathResource("home_icons/ic_home_filled.png")
-        return ResponseEntity
-                .ok()
-                .contentType(MediaType.IMAGE_PNG)
-                .body(InputStreamResource(imgFile.inputStream))
+        return resourcesService.getImage("home_icons/ic_home_filled.png", "PNG")
     }
 
     @RequestMapping("/ic_request", method = arrayOf(RequestMethod.GET), produces = arrayOf(MediaType.IMAGE_PNG_VALUE))
     @Throws(IOException::class)
     fun getRequestIcon(): ResponseEntity<InputStreamResource> {
-        val imgFile = ClassPathResource("home_icons/ic_requests_outlined.png")
-        return ResponseEntity
-                .ok()
-                .contentType(MediaType.IMAGE_PNG)
-                .body(InputStreamResource(imgFile.inputStream))
+        return resourcesService.getImage("home_icons/ic_requests_outlined.png", "PNG")
     }
 
     @RequestMapping("/ic_task", method = arrayOf(RequestMethod.GET), produces = arrayOf(MediaType.IMAGE_PNG_VALUE))
     @Throws(IOException::class)
     fun getTaskIcon(): ResponseEntity<InputStreamResource> {
-        val imgFile = ClassPathResource("home_icons/ic_tasks_outlined.png")
-        return ResponseEntity
-                .ok()
-                .contentType(MediaType.IMAGE_PNG)
-                .body(InputStreamResource(imgFile.inputStream))
+        return resourcesService.getImage("home_icons/ic_tasks_outlined.png", "PNG")
     }
 
     @RequestMapping("/ic_notification", method = arrayOf(RequestMethod.GET), produces = arrayOf(MediaType.IMAGE_PNG_VALUE))
     @Throws(IOException::class)
     fun getNotificationIcon(): ResponseEntity<InputStreamResource> {
-        val imgFile = ClassPathResource("home_icons/ic_notification_outlined.png")
-        return ResponseEntity
-                .ok()
-                .contentType(MediaType.IMAGE_PNG)
-                .body(InputStreamResource(imgFile.inputStream))
+        return resourcesService.getImage("home_icons/ic_notification_outlined.png", "PNG")
     }
 }

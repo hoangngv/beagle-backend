@@ -9,8 +9,14 @@ import org.springframework.stereotype.Service
 @Service
 class ResourcesService {
 
-    fun getAccountInfoImage(): ResponseEntity<InputStreamResource> {
-        val imgFile = ClassPathResource("images/img_te_nan_xa_hoi.jpg")
+    fun getImage(imagePath: String, type: String): ResponseEntity<InputStreamResource> {
+        val imgFile = ClassPathResource(imagePath)
+        if (type == "PNG") {
+            return ResponseEntity
+                    .ok()
+                    .contentType(MediaType.IMAGE_PNG)
+                    .body(InputStreamResource(imgFile.inputStream))
+        }
         return ResponseEntity
                 .ok()
                 .contentType(MediaType.IMAGE_JPEG)
