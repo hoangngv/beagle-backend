@@ -1,5 +1,6 @@
 package com.vt.beaglebff.builder
 
+import br.com.zup.beagle.builder.widget.flex
 import br.com.zup.beagle.core.CornerRadius
 import br.com.zup.beagle.core.Display
 import br.com.zup.beagle.core.Style
@@ -101,27 +102,36 @@ class SingleComponentBuilder() {
     // tab home
     fun createTabHome() = Container(
             children = listOf(
-                    PageView(
-                            context = ContextData(
-                                    id = "bannerUrl",
-                                    value = listOf(
-                                            "http://10.0.2.2:8080/resourcesController/img_tnxh",
-                                            "http://10.0.2.2:8080/resourcesController/img_tnxh"
-                                    )
-                            ),
-                            pageIndicator = PageIndicator(
-                                    selectedColor = "#000000",
-                                    unselectedColor = "#888888"
-                            ),
+                    createToolbar(),
+                    Container(
                             children = listOf(
-                                    createBannerImage("@{bannerUrl[0]}"),
-                                    createBannerImage("@{bannerUrl[1]}")
+                                    PageView(
+                                            context = ContextData(
+                                                    id = "bannerUrl",
+                                                    value = listOf(
+                                                            "http://10.0.2.2:8080/resourcesController/img_tnxh",
+                                                            "http://10.0.2.2:8080/resourcesController/img_tnxh"
+                                                    )
+                                            ),
+                                            pageIndicator = PageIndicator(
+                                                    selectedColor = "#000000",
+                                                    unselectedColor = "#888888"
+                                            ),
+                                            children = listOf(
+                                                    createBannerImage("@{bannerUrl[0]}"),
+                                                    createBannerImage("@{bannerUrl[1]}")
+                                            )
+                                    )
+                            )
+                    ).applyStyle(
+                            style = Style(
+                                    size = Size(width = 100.unitPercent(), height = 25.unitPercent())
                             )
                     )
             )
-    ).applyStyle(
-            style = Style(
-                    size = Size(width = 100.unitPercent(), height = 25.unitPercent())
+    ).applyFlex(
+            flex = Flex(
+                    grow = 1.0
             )
     )
 
