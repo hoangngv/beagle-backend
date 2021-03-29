@@ -1,5 +1,6 @@
 package com.vt.beaglebff.controller
 
+import br.com.zup.beagle.widget.layout.ScreenBuilder
 import com.vt.beaglebff.service.*
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.GetMapping
@@ -13,7 +14,8 @@ class UiController(
         private val personalScreenService: PersonalScreenService,
         private val firstScreenBeagleService: FirstScreenBeagleService,
         private val loginScreenService: LoginScreenService,
-        private val singleComponentService: SingleComponentService
+        private val singleComponentService: SingleComponentService,
+        private val myService: MyService
 ) {
     @GetMapping("/screen")
     fun getFirstScreen() = firstScreenBeagleService.createScreenBeagle()
@@ -47,4 +49,7 @@ class UiController(
 
     @GetMapping("/tabNotification")
     fun getTabNotification() = singleComponentService.createTabNotification()
+
+    @GetMapping("/minhScreen")
+    fun getScreen() : ScreenBuilder = myService.getMyScreen()
 }

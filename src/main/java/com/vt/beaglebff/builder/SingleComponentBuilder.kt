@@ -1,9 +1,10 @@
 package com.vt.beaglebff.builder
 
 import br.com.zup.beagle.core.CornerRadius
+import br.com.zup.beagle.core.Display
 import br.com.zup.beagle.core.Style
 import br.com.zup.beagle.ext.*
-import br.com.zup.beagle.widget.action.Alert
+import br.com.zup.beagle.widget.action.*
 import br.com.zup.beagle.widget.context.ContextData
 import br.com.zup.beagle.widget.context.expressionOf
 import br.com.zup.beagle.widget.core.*
@@ -126,80 +127,7 @@ class SingleComponentBuilder() {
 
     // tab request
     fun createTabRequest() : Container {
-        val characters = listOf(
-                Person(
-                        name = "Kelsier",
-                        race = "Half-skaa",
-                        planet = "Scadrial",
-                        isMistborn = true,
-                        age = 38,
-                        sex = "male"
-                ),
-                Person(
-                        name = "Vin",
-                        race = "Half-skaa",
-                        planet = "Scadrial",
-                        isMistborn = true,
-                        age = 20,
-                        sex = "female"
-                ),
-                Person(
-                        name = "TenSoon",
-                        race = "Kandra",
-                        planet = "Scadrial",
-                        isMistborn = false,
-                        age = 40,
-                        sex = "male"
-                ),
-                Person(
-                        name = "Kelsier",
-                        race = "Half-skaa",
-                        planet = "Scadrial",
-                        isMistborn = true,
-                        age = 38,
-                        sex = "male"
-                ),
-                Person(
-                        name = "Vin",
-                        race = "Half-skaa",
-                        planet = "Scadrial",
-                        isMistborn = true,
-                        age = 20,
-                        sex = "female"
-                ),
-                Person(
-                        name = "TenSoon",
-                        race = "Kandra",
-                        planet = "Scadrial",
-                        isMistborn = false,
-                        age = 40,
-                        sex = "male"
-                ),
-                Person(
-                        name = "Kelsier",
-                        race = "Half-skaa",
-                        planet = "Scadrial",
-                        isMistborn = true,
-                        age = 38,
-                        sex = "male"
-                ),
-                Person(
-                        name = "Vin",
-                        race = "Half-skaa",
-                        planet = "Scadrial",
-                        isMistborn = true,
-                        age = 20,
-                        sex = "female"
-                ),
-                Person(
-                        name = "TenSoon",
-                        race = "Kandra",
-                        planet = "Scadrial",
-                        isMistborn = false,
-                        age = 40,
-                        sex = "male"
-                )
-        )
+        val characters = populateData()
         return Container(
                 children = listOf(
                         ListView(
@@ -263,6 +191,112 @@ class SingleComponentBuilder() {
                             bottom = 8.unitReal()
                     ),
                     cornerRadius = CornerRadius(48.0)
+            )
+    )
+
+    private fun populateData() = listOf(
+            Person(
+                    name = "Kelsier",
+                    race = "Half-skaa",
+                    planet = "Scadrial",
+                    isMistborn = true,
+                    age = 38,
+                    sex = "male"
+            ),
+            Person(
+                    name = "Vin",
+                    race = "Half-skaa",
+                    planet = "Scadrial",
+                    isMistborn = true,
+                    age = 20,
+                    sex = "female"
+            ),
+            Person(
+                    name = "TenSoon",
+                    race = "Kandra",
+                    planet = "Scadrial",
+                    isMistborn = false,
+                    age = 40,
+                    sex = "male"
+            ),
+            Person(
+                    name = "Kelsier",
+                    race = "Half-skaa",
+                    planet = "Scadrial",
+                    isMistborn = true,
+                    age = 38,
+                    sex = "male"
+            ),
+            Person(
+                    name = "Vin",
+                    race = "Half-skaa",
+                    planet = "Scadrial",
+                    isMistborn = true,
+                    age = 20,
+                    sex = "female"
+            ),
+            Person(
+                    name = "TenSoon",
+                    race = "Kandra",
+                    planet = "Scadrial",
+                    isMistborn = false,
+                    age = 40,
+                    sex = "male"
+            ),
+            Person(
+                    name = "Kelsier",
+                    race = "Half-skaa",
+                    planet = "Scadrial",
+                    isMistborn = true,
+                    age = 38,
+                    sex = "male"
+            ),
+            Person(
+                    name = "Vin",
+                    race = "Half-skaa",
+                    planet = "Scadrial",
+                    isMistborn = true,
+                    age = 20,
+                    sex = "female"
+            ),
+            Person(
+                    name = "TenSoon",
+                    race = "Kandra",
+                    planet = "Scadrial",
+                    isMistborn = false,
+                    age = 40,
+                    sex = "male"
+            )
+    )
+
+    private fun createToolbar() = Container(
+            children = listOf(
+                    Image(
+                            ImagePath.Local.both(
+                                    "https://img.icons8.com/pastel-glyph/2x/search--v2.png",
+                                    "ic_search"
+                            )
+                    ).applyStyle(
+                            Style(
+                                    size = Size(width = 24.unitReal(), height = 24.unitReal()),
+                                    margin = EdgeValue(right = 11.unitReal())
+                            )
+                    ),
+                    TextInput(
+                            placeholder = "Nhập số năm cần tìm kiếm"
+                    )
+            )
+    ).applyStyle(
+            Style(
+                    margin = EdgeValue(horizontal = 20.unitReal(), vertical = 8.unitReal()),
+                    backgroundColor = "#ffffff",
+                    padding = EdgeValue(horizontal = 11.unitReal()),
+                    size = Size(height = 44.unitReal()),
+                    cornerRadius = CornerRadius(22.0),
+                    flex = Flex(
+                            FlexDirection.ROW,
+                            alignItems = AlignItems.CENTER
+                    )
             )
     )
 }
