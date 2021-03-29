@@ -92,4 +92,16 @@ class ResourcesController(private val resourcesService: ResourcesService) {
     fun getNotificationIcon(): ResponseEntity<InputStreamResource> {
         return resourcesService.getImage("home_icons/ic_notification_outlined.png", "PNG")
     }
+
+    @RequestMapping("/ic_notification_white", method = arrayOf(RequestMethod.GET), produces = arrayOf(MediaType.IMAGE_PNG_VALUE))
+    @Throws(IOException::class)
+    fun getNotificationWhiteIcon(): ResponseEntity<InputStreamResource> {
+        return resourcesService.getImage("home_icons/ic_notification.png", "PNG")
+    }
+
+    @RequestMapping("/ic_avatar", method = arrayOf(RequestMethod.GET), produces = arrayOf(MediaType.IMAGE_PNG_VALUE))
+    @Throws(IOException::class)
+    fun getAvatarPlaceholder(): ResponseEntity<InputStreamResource> {
+        return resourcesService.getImage("home_icons/ic_avatar_2.png", "PNG")
+    }
 }

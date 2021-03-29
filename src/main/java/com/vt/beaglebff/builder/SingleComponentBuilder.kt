@@ -1,5 +1,6 @@
 package com.vt.beaglebff.builder
 
+import br.com.zup.beagle.builder.widget.size
 import br.com.zup.beagle.core.CornerRadius
 import br.com.zup.beagle.core.Style
 import br.com.zup.beagle.ext.*
@@ -10,9 +11,12 @@ import br.com.zup.beagle.widget.core.*
 import br.com.zup.beagle.widget.layout.Container
 import br.com.zup.beagle.widget.layout.PageView
 import br.com.zup.beagle.widget.layout.ScrollView
+import br.com.zup.beagle.widget.navigation.Touchable
 import br.com.zup.beagle.widget.pager.PageIndicator
 import br.com.zup.beagle.widget.ui.*
+import com.vt.beaglebff.components.actions.ToastAction
 import com.vt.beaglebff.components.widgets.BottomNavigationView
+import com.vt.beaglebff.components.widgets.CircularImageView
 import com.vt.beaglebff.model.Person
 
 class SingleComponentBuilder() {
@@ -151,6 +155,40 @@ class SingleComponentBuilder() {
                     Text(
                             text = "Xin chào",
                             styleId = "WhiteNormalText"
+                    ),
+                    Container(
+                            children = listOf(
+                                    Touchable(
+                                        child = Image(
+                                                path = ImagePath.Remote("http://10.0.2.2:8080/resourcesController/ic_notification_white")
+                                        ).applyStyle(
+                                                style = Style(
+                                                        size = Size(width = 30.unitReal(), height = 30.unitReal())
+                                                )
+                                        ),
+                                        onPress = listOf(
+                                                ToastAction("Không có thông báo mới nào")
+                                        )
+                                    ),
+                                    Touchable(
+                                            child = CircularImageView(
+                                                    remoteUrl = "http://10.0.2.2:8080/resourcesController/ic_avatar"
+                                            ).applyStyle(
+                                                    style = Style(
+                                                            size = Size(width = 44.unitReal(), height = 44.unitReal()),
+                                                            margin = EdgeValue(left = 8.unitReal())
+                                                    )
+                                            ),
+                                            onPress = listOf(
+                                                    Navigate.PushView(route = Route.Remote("/uiController/personal"))
+                                            )
+                                    )
+                            )
+                    ).applyFlex(
+                            flex = Flex(
+                                    flexDirection = FlexDirection.ROW,
+                                    alignItems = AlignItems.CENTER
+                            )
                     )
             )
     ).applyStyle(
@@ -160,6 +198,13 @@ class SingleComponentBuilder() {
                             left = 20.unitReal(),
                             right = 20.unitReal()
                     )
+            )
+    ).applyFlex(
+            flex = Flex(
+                    flexDirection = FlexDirection.ROW,
+                    alignItems = AlignItems.CENTER,
+                    justifyContent = JustifyContent.SPACE_BETWEEN,
+                    grow = 1.0
             )
     )
 
