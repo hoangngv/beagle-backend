@@ -15,6 +15,7 @@ import br.com.zup.beagle.widget.layout.Container
 import br.com.zup.beagle.widget.layout.Screen
 import br.com.zup.beagle.widget.layout.ScreenBuilder
 import br.com.zup.beagle.widget.ui.*
+import com.vt.beaglebff.components.actions.ToastAction
 import com.vt.beaglebff.model.GithubUser
 import com.vt.beaglebff.model.SearchContext
 import com.vt.beaglebff.model.UserCell
@@ -54,9 +55,11 @@ class MyScreen : ScreenBuilder {
                             styleId = "NormalText",
                             placeholder = "Nhập số năm cần tìm kiếm",
                             onChange = listOf(
+                                ToastAction("hihi"),
                                 SetContext("global", "@{onChange.value}", path = "key")
                             ),
                             onBlur = listOf(
+                                Alert("hihi", "hehe"),
                                 Condition(
                                     condition = expressionOf("@{not(isEmpty(global.key))}"),
                                     onTrue = listOf(

@@ -102,7 +102,15 @@ class SingleComponentBuilder() {
     // tab home
     fun createTabHome() = Container(
             children = listOf(
-                    createToolbar(),
+                    Container(
+                            children = listOf(
+                                    createToolbar()
+                            )
+                    ).applyStyle(
+                            style = Style(
+                                    backgroundColor = "#3596EC"
+                            )
+                    ),
                     Container(
                             children = listOf(
                                     PageView(
@@ -293,7 +301,8 @@ class SingleComponentBuilder() {
                             )
                     ),
                     TextInput(
-                            placeholder = "Nhập số năm cần tìm kiếm"
+                            styleId = "HintText",
+                            placeholder = "Công việc, yêu cầu, ứng dụng"
                     )
             )
     ).applyStyle(
