@@ -1,8 +1,6 @@
 package com.vt.beaglebff.builder
 
-import br.com.zup.beagle.builder.widget.flex
 import br.com.zup.beagle.core.CornerRadius
-import br.com.zup.beagle.core.Display
 import br.com.zup.beagle.core.Style
 import br.com.zup.beagle.ext.*
 import br.com.zup.beagle.widget.action.*
@@ -14,7 +12,6 @@ import br.com.zup.beagle.widget.layout.PageView
 import br.com.zup.beagle.widget.layout.ScrollView
 import br.com.zup.beagle.widget.pager.PageIndicator
 import br.com.zup.beagle.widget.ui.*
-import com.vt.beaglebff.components.actions.ToastAction
 import com.vt.beaglebff.components.widgets.BottomNavigationView
 import com.vt.beaglebff.model.Person
 
@@ -72,70 +69,11 @@ class SingleComponentBuilder() {
         )
     }
 
-    fun createBannerView() = Container(
-            children = listOf(
-                    PageView(
-                            context = ContextData(
-                                    id = "bannerUrl",
-                                    value = listOf(
-                                            "http://10.0.2.2:8080/resourcesController/img_tnxh",
-                                            "http://10.0.2.2:8080/resourcesController/img_tnxh"
-                                    )
-                            ),
-                            pageIndicator = PageIndicator(
-                                    selectedColor = "#000000",
-                                    unselectedColor = "#888888"
-                            ),
-                            children = listOf(
-                                    createBannerImage("@{bannerUrl[0]}"),
-                                    createBannerImage("@{bannerUrl[1]}")
-                            )
-                    )
-            )
-    ).applyStyle(
-            style = Style(
-                    size = Size(width = 100.unitPercent(), height = 25.unitPercent()),
-                    margin = EdgeValue(horizontal = 8.unitReal(), top = 16.unitReal())
-            )
-    )
-
     // tab home
     fun createTabHome() = Container(
             children = listOf(
-                    Container(
-                            children = listOf(
-                                    createToolbar()
-                            )
-                    ).applyStyle(
-                            style = Style(
-                                    backgroundColor = "#3596EC"
-                            )
-                    ),
-                    Container(
-                            children = listOf(
-                                    PageView(
-                                            context = ContextData(
-                                                    id = "bannerUrl",
-                                                    value = listOf(
-                                                            "http://10.0.2.2:8080/resourcesController/img_tnxh",
-                                                            "http://10.0.2.2:8080/resourcesController/img_tnxh"
-                                                    )
-                                            ),
-                                            pageIndicator = PageIndicator(
-                                                    selectedColor = "#000000",
-                                                    unselectedColor = "#888888"
-                                            ),
-                                            children = listOf(
-                                                    createBannerImage("@{bannerUrl[0]}"),
-                                                    createBannerImage("@{bannerUrl[1]}")
-                                            )
-                                    )
-                            )
-                    ).applyStyle(
-                            style = Style(
-                                    size = Size(width = 100.unitPercent(), height = 25.unitPercent())
-                            )
-                    )
+                    createToolbar(),
+                    createBannerView()
             )
     ).applyFlex(
             flex = Flex(
@@ -194,6 +132,60 @@ class SingleComponentBuilder() {
                                     Text("Vertical ScrollView", styleId = "NormalText")
                             )
                     )
+            )
+    )
+
+    private fun createToolbar() = Container(
+            children = listOf(
+                    createHeader(),
+                    createSearchBar()
+            )
+    ).applyStyle(
+            style = Style(
+                    backgroundColor = "#3596EC"
+            )
+    )
+
+    private fun createHeader() = Container(
+            children = listOf(
+                    Text(
+                            text = "Xin chào",
+                            styleId = "WhiteNormalText"
+                    )
+            )
+    ).applyStyle(
+            style = Style(
+                    margin = EdgeValue(
+                            top = 20.unitReal(),
+                            left = 20.unitReal(),
+                            right = 20.unitReal()
+                    )
+            )
+    )
+
+    fun createBannerView() = Container(
+            children = listOf(
+                    PageView(
+                            context = ContextData(
+                                    id = "bannerUrl",
+                                    value = listOf(
+                                            "http://10.0.2.2:8080/resourcesController/img_tnxh",
+                                            "http://10.0.2.2:8080/resourcesController/img_tnxh"
+                                    )
+                            ),
+                            pageIndicator = PageIndicator(
+                                    selectedColor = "#000000",
+                                    unselectedColor = "#888888"
+                            ),
+                            children = listOf(
+                                    createBannerImage("@{bannerUrl[0]}"),
+                                    createBannerImage("@{bannerUrl[1]}")
+                            )
+                    )
+            )
+    ).applyStyle(
+            style = Style(
+                    size = Size(width = 100.unitPercent(), height = 25.unitPercent())
             )
     )
 
@@ -287,7 +279,7 @@ class SingleComponentBuilder() {
             )
     )
 
-    private fun createToolbar() = Container(
+    private fun createSearchBar() = Container(
             children = listOf(
                     Image(
                             ImagePath.Local.both(
@@ -307,7 +299,7 @@ class SingleComponentBuilder() {
             )
     ).applyStyle(
             Style(
-                    margin = EdgeValue(horizontal = 20.unitReal(), vertical = 8.unitReal()),
+                    margin = EdgeValue(horizontal = 20.unitReal(), vertical = 20.unitReal()),
                     backgroundColor = "#ffffff",
                     padding = EdgeValue(horizontal = 11.unitReal()),
                     size = Size(height = 44.unitReal()),
