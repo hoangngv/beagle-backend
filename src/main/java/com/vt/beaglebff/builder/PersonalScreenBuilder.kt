@@ -14,36 +14,11 @@ import br.com.zup.beagle.widget.ui.ImagePath
 import br.com.zup.beagle.widget.ui.Text
 import com.vt.beaglebff.components.actions.ToastAction
 import com.vt.beaglebff.components.widgets.ItemRowDivider
-import com.vt.beaglebff.components.widgets.ItemRowPersonal
 import br.com.zup.beagle.widget.core.JustifyContent
+import com.vt.beaglebff.common.CustomStyle
 import com.vt.beaglebff.components.actions.NavigateAction
 
-
 class PersonalScreenBuilder : ScreenBuilder {
-
-    private val buttonStyle = Style(margin = EdgeValue(
-            left = 16.unitReal(),
-            right = 16.unitReal(),
-            top = 8.unitReal(),
-            bottom = 8.unitReal()
-        )
-    )
-
-    private val iconStyle = Style(
-            size = Size(width = 40.unitReal(), height = 40.unitReal()),
-            flex = Flex(alignSelf = AlignSelf.FLEX_END),
-            margin = EdgeValue(
-                    left = 16.unitReal()
-            )
-    )
-
-    private val textStyle = Style(
-            size = Size(
-                    width = UnitValue(
-                            33.0, type = UnitType.PERCENT
-                    )
-            )
-    )
 
     override fun build() = Screen(
             child = ScrollView(scrollDirection = ScrollAxis.VERTICAL,
@@ -145,21 +120,21 @@ class PersonalScreenBuilder : ScreenBuilder {
                         )
                 )
                 .applyFlex(Flex(flexDirection = FlexDirection.ROW, flexWrap = FlexWrap.NO_WRAP))
-                .applyStyle(style = buttonStyle)
+                .applyStyle(style = CustomStyle.buttonStyle)
         )
     }
 
     private fun createText(text: String)
-            = Text(text).applyStyle(style = textStyle)
+            = Text(text).applyStyle(style = CustomStyle.textStyle)
 
     private fun createButton(buttonText: String, remoteUrl: String, styleId: String? = "ButtonRightArrow") = Container(
             children = listOf(
-                    Image(ImagePath.Remote(remoteUrl = remoteUrl)).applyStyle(style = iconStyle),
+                    Image(ImagePath.Remote(remoteUrl = remoteUrl)).applyStyle(style = CustomStyle.iconStyle),
                     Button(
                             text = buttonText,
                             styleId = styleId,
                             onPress = listOf(ToastAction(buttonText))
-                    ).applyStyle(style = buttonStyle)
+                    ).applyStyle(style = CustomStyle.buttonStyle)
             )
     ).applyFlex(
             Flex(

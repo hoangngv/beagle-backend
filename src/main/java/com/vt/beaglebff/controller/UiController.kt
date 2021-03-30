@@ -2,7 +2,6 @@ package com.vt.beaglebff.controller
 
 import br.com.zup.beagle.widget.layout.ScreenBuilder
 import com.vt.beaglebff.service.*
-import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -12,14 +11,10 @@ import org.springframework.web.bind.annotation.RestController
 class UiController(
         private val homeScreenService: HomeScreenService,
         private val personalScreenService: PersonalScreenService,
-        private val firstScreenBeagleService: FirstScreenBeagleService,
         private val loginScreenService: LoginScreenService,
-        private val singleComponentService: SingleComponentService,
+        private val tabService: TabService,
         private val myService: MyService
 ) {
-    @GetMapping("/screen")
-    fun getFirstScreen() = firstScreenBeagleService.createScreenBeagle()
-
     @GetMapping("/home")
     fun getHomeScreen() = homeScreenService.createHomeScreen()
 
@@ -29,26 +24,17 @@ class UiController(
     @GetMapping("/login")
     fun getLoginScreen() = loginScreenService.createLoginScreen()
 
-    @GetMapping("/buttonComponent")
-    fun getButtonComponent() = singleComponentService.createButtonComponent()
-
-    @GetMapping("/bottomNavigationView")
-    fun getHomeScreenBottomNavigationView() = singleComponentService.createBottomNavigationView()
-
-    @GetMapping("/banner")
-    fun getHomeScreenBannerView() = singleComponentService.createBannerView()
-
     @GetMapping("/tabHome")
-    fun getTabHome() = singleComponentService.createTabHome()
+    fun getTabHome() = tabService.createTabHome()
 
     @GetMapping("/tabRequest")
-    fun getTabRequest() = singleComponentService.createTabRequest()
+    fun getTabRequest() = tabService.createTabRequest()
 
     @GetMapping("/tabTask")
-    fun getTabTask() = singleComponentService.createTabTask()
+    fun getTabTask() = tabService.createTabTask()
 
     @GetMapping("/tabNotification")
-    fun getTabNotification() = singleComponentService.createTabNotification()
+    fun getTabNotification() = tabService.createTabNotification()
 
     @GetMapping("/minhScreen")
     fun getScreen() : ScreenBuilder = myService.getMyScreen()
