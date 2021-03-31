@@ -13,6 +13,7 @@ import br.com.zup.beagle.widget.pager.PageIndicator
 import br.com.zup.beagle.widget.ui.*
 import com.vt.beaglebff.components.actions.ToastAction
 import br.com.zup.beagle.widget.core.JustifyContent
+import com.vt.beaglebff.Constants
 import com.vt.beaglebff.components.widgets.BottomNavigationView
 import com.vt.beaglebff.components.widgets.ItemRowDivider
 
@@ -116,9 +117,7 @@ class HomeScreenBuilder : ScreenBuilder, BaseBuilder() {
                 "/screenController/home")
         )
 
-        return createContainer(
-                BottomNavigationView(menuItems)
-        ).applyStyle(
+        return createContainer(BottomNavigationView(menuItems)).applyStyle(
                 Style(
                         flex = Flex(
                                 justifyContent = JustifyContent.FLEX_END,
@@ -199,7 +198,6 @@ class HomeScreenBuilder : ScreenBuilder, BaseBuilder() {
                                     alignSelf = AlignSelf.CENTER
                             )
                     )
-
             ).applyFlex(
                     Flex(
                             flexDirection = FlexDirection.COLUMN,

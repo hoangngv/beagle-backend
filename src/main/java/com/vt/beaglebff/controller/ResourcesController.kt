@@ -104,4 +104,22 @@ class ResourcesController(private val resourcesService: ResourcesService) {
     fun getAvatarPlaceholder(): ResponseEntity<InputStreamResource> {
         return resourcesService.getImage("home_icons/ic_avatar_2.png", "PNG")
     }
+
+    @RequestMapping("/ic_back", method = [RequestMethod.GET], produces = [MediaType.IMAGE_PNG_VALUE])
+    @Throws(IOException::class)
+    fun getBackIcon(): ResponseEntity<InputStreamResource> {
+        return resourcesService.getImage("images/ic_back.png", "PNG")
+    }
+
+    @RequestMapping("/ic_tick", method = [RequestMethod.GET], produces = [MediaType.IMAGE_PNG_VALUE])
+    @Throws(IOException::class)
+    fun getTickIcon(): ResponseEntity<InputStreamResource> {
+        return resourcesService.getImage("images/ic_tick.png", "PNG")
+    }
+
+    @RequestMapping("/ic_setting", method = [RequestMethod.GET], produces = [MediaType.IMAGE_PNG_VALUE])
+    @Throws(IOException::class)
+    fun getSetting2Icon(): ResponseEntity<InputStreamResource> {
+        return resourcesService.getImage("images/ic_setting.png", "PNG")
+    }
 }
