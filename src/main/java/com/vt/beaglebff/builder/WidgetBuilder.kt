@@ -53,7 +53,7 @@ object WidgetBuilder : BaseBuilder(){
                 )
         )
 
-        return createContainer(BottomNavigationView(menuItems))
+        return createContainer(BottomNavigationView(menuItems = menuItems, selectedColor = "#3596EC", unselectedColor = "#788793"))
     }
 
     // banner

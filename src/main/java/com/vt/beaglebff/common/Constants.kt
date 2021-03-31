@@ -7,4 +7,5 @@ object Constants {
 
     const val colorWhite = "#FFFFFF"
     const val colorPrimary = "#3596EC"
+    const val colorGrayDark = "#788793"
 }
