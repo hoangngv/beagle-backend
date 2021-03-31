@@ -1,4 +1,3 @@
-
 package com.vt.beaglebff.builder
 
 import br.com.zup.beagle.core.Style
@@ -17,7 +16,7 @@ class SingleComponentBuilder() {
                 children = listOf(
                         Touchable(
                                 child = Image(
-                                        path = ImagePath.Remote("${Constants.baseUrl}/resourcesController/ic_back")
+                                        path = ImagePath.Remote("http://10.0.2.2:8080/resourcesController/ic_back")
                                 ).applyStyle(
                                         style = Style(
                                                 size = Size(
@@ -62,7 +61,7 @@ class SingleComponentBuilder() {
                                 children = listOf(
                                         Touchable(
                                                 child = Image(
-                                                        path = ImagePath.Remote("${Constants.baseUrl}/resourcesController/ic_tick")
+                                                        path = ImagePath.Remote("http://10.0.2.2:8080/resourcesController/ic_tick")
                                                 ).applyStyle(
                                                         style = Style(
                                                                 size = Size(
@@ -86,7 +85,7 @@ class SingleComponentBuilder() {
                                         ),
                                         Touchable(
                                                 child = Image(
-                                                        path = ImagePath.Remote("${Constants.baseUrl}/resourcesController/ic_setting")
+                                                        path = ImagePath.Remote("http://10.0.2.2:8080/resourcesController/ic_setting")
                                                 ).applyStyle(
                                                         style = Style(
                                                                 size = Size(
