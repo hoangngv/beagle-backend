@@ -17,13 +17,11 @@ import com.vt.beaglebff.components.widgets.BottomNavigationView
 import com.vt.beaglebff.components.widgets.ItemRowDivider
 
 
-class HomeScreenBuilder : ScreenBuilder {
+class HomeScreenBuilder : ScreenBuilder, BaseBuilder() {
     override fun build(): Screen {
         return Screen(
-                child = Container(
-                        children = listOf(
-                                createBottomNavigationView()
-                        )
+                child = createContainer(
+                        createBottomNavigationView()
                 ).applyStyle(
                         Style(
                                 flex = Flex(
@@ -34,24 +32,22 @@ class HomeScreenBuilder : ScreenBuilder {
         )
     }
 
-    private fun createBannerView() = Container(
-            children = listOf(
-                    PageView(
-                            context = ContextData(
-                                    id = "bannerUrl",
-                                    value = listOf(
-                                            "http://10.0.2.2:8080/resourcesController/img_tnxh",
-                                            "http://10.0.2.2:8080/resourcesController/img_tnxh"
-                                    )
-                            ),
-                            pageIndicator = PageIndicator(
-                                    selectedColor = "#000000",
-                                    unselectedColor = "#888888"
-                            ),
-                            children = listOf(
-                                    createBannerImage("@{bannerUrl[0]}"),
-                                    createBannerImage("@{bannerUrl[1]}")
+    private fun createBannerView() = createContainer(
+            PageView(
+                    context = ContextData(
+                            id = "bannerUrl",
+                            value = listOf(
+                                    "http://10.0.2.2:8080/resourcesController/img_tnxh",
+                                    "http://10.0.2.2:8080/resourcesController/img_tnxh"
                             )
+                    ),
+                    pageIndicator = PageIndicator(
+                            selectedColor = "#000000",
+                            unselectedColor = "#888888"
+                    ),
+                    children = listOf(
+                            createBannerImage("@{bannerUrl[0]}"),
+                            createBannerImage("@{bannerUrl[1]}")
                     )
             )
     ).applyStyle(
@@ -65,18 +61,14 @@ class HomeScreenBuilder : ScreenBuilder {
             )
     )
 
-    private fun createToolbar() = Container(
-            listOf(
-                    Text(
-                            text = "Xin chào",
-                            textColor = "#FFFFFF",
-                            styleId = "NormalText",
-                            alignment = TextAlignment.CENTER
-                    ).applyStyle(
-                            style = Style(
-                                    margin = EdgeValue(
-                                            all = 8.unitReal()
-                                    )
+    private fun createToolbar() = createContainer(
+            createTextView(
+                    text = "Xin chào",
+                    styleId = "NormalText"
+            ).applyStyle(
+                    style = Style(
+                            margin = EdgeValue(
+                                    all = 8.unitReal()
                             )
                     )
             )
@@ -94,15 +86,14 @@ class HomeScreenBuilder : ScreenBuilder {
             )
     ).setId("widget")
 
-    private fun createBannerImage(remoteUrl: String) = Image(
-            path = ImagePath.Remote(remoteUrl),
-            mode = ImageContentMode.CENTER_CROP
-    ).applyStyle(
-            Style(
-                    margin = EdgeValue(all = 16.unitReal()),
-                    cornerRadius = CornerRadius(48.0)
-            )
-    )
+    private fun createBannerImage(remoteUrl: String): Image {
+        return createImageViewFromRemote(remoteUrl).applyStyle(
+                        Style(
+                                margin = EdgeValue(all = 16.unitReal()),
+                                cornerRadius = CornerRadius(48.0)
+                        )
+                )
+    }
 
     private fun createBottomNavigationView() : Container {
         val menuItems = ArrayList<Array<String>>()
@@ -110,25 +101,23 @@ class HomeScreenBuilder : ScreenBuilder {
         menuItems.add(arrayOf(
                 "http://10.0.2.2:8080/resourcesController/ic_account_info",
                 "Home",
-                "/uiController/home")
+                "/screenController/home")
         )
 
         menuItems.add(arrayOf(
                 "http://10.0.2.2:8080/resourcesController/ic_account_info",
                 "Requests",
-                "/uiController/home")
+                "/screenController/home")
         )
 
         menuItems.add(arrayOf(
                 "http://10.0.2.2:8080/resourcesController/ic_account_info",
                 "Tasks",
-                "/uiController/home")
+                "/screenController/home")
         )
 
-        return Container(
-                children = listOf(
-                        BottomNavigationView(menuItems)
-                )
+        return createContainer(
+                BottomNavigationView(menuItems)
         ).applyStyle(
                 Style(
                         flex = Flex(
@@ -139,44 +128,40 @@ class HomeScreenBuilder : ScreenBuilder {
         )
     }
 
-    private fun createBottomNavigationBar() = Container(
-            children = listOf(
-                    ItemRowDivider(
-                            expressionOf("#B9B9B9"),
-                            expressionOf("1"),
-                            leftMargin = 0,
-                            rightMargin = 0,
-                            topMargin = 0,
-                            bottomMargin = 0
+    private fun createBottomNavigationBar() = createContainer(
+            ItemRowDivider(
+                    expressionOf("#B9B9B9"),
+                    expressionOf("1"),
+                    leftMargin = 0,
+                    rightMargin = 0,
+                    topMargin = 0,
+                    bottomMargin = 0
+            ),
+            createContainer(
+                    createBottomButton(
+                            text = "Home",
+                            remoteIconUrl = "http://10.0.2.2:8080/resourcesController/ic_account_info"
                     ),
-                    Container(
-                            children = listOf(
-                                    createBottomButton(
-                                            text = "Home",
-                                            remoteIconUrl = "http://10.0.2.2:8080/resourcesController/ic_account_info"
-                                    ),
-                                    createBottomButton(
-                                            text = "Tasks",
-                                            remoteIconUrl = "http://10.0.2.2:8080/resourcesController/ic_account_info"
-                                    ),
-                                    createBottomButton(
-                                            text = "Requests",
-                                            remoteIconUrl = "http://10.0.2.2:8080/resourcesController/ic_account_info"
-                                    ),
-                                    createBottomButton(
-                                            text = "Chat",
-                                            remoteIconUrl = "http://10.0.2.2:8080/resourcesController/ic_account_info"
-                                    ),
-                                    createBottomButton(
-                                            text = "Notifications",
-                                            remoteIconUrl = "http://10.0.2.2:8080/resourcesController/ic_account_info"
-                                    )
-                            )
-                    ).applyFlex(
-                            Flex(
-                                    flexDirection = FlexDirection.ROW,
-                                    flexWrap = FlexWrap.NO_WRAP
-                            )
+                    createBottomButton(
+                            text = "Tasks",
+                            remoteIconUrl = "http://10.0.2.2:8080/resourcesController/ic_account_info"
+                    ),
+                    createBottomButton(
+                            text = "Requests",
+                            remoteIconUrl = "http://10.0.2.2:8080/resourcesController/ic_account_info"
+                    ),
+                    createBottomButton(
+                            text = "Chat",
+                            remoteIconUrl = "http://10.0.2.2:8080/resourcesController/ic_account_info"
+                    ),
+                    createBottomButton(
+                            text = "Notifications",
+                            remoteIconUrl = "http://10.0.2.2:8080/resourcesController/ic_account_info"
+                    )
+            ).applyFlex(
+                    Flex(
+                            flexDirection = FlexDirection.ROW,
+                            flexWrap = FlexWrap.NO_WRAP
                     )
             )
     ).applyFlex(
@@ -194,29 +179,27 @@ class HomeScreenBuilder : ScreenBuilder {
     )
 
     private fun createBottomButton(text: String, remoteIconUrl: String) = Touchable(
-            child = Container(
-                    children = listOf(
-                            Image(
-                                    path = ImagePath.Remote(remoteUrl = remoteIconUrl)
-                            ).applyStyle(
-                                    Style(
-                                            size = Size(width = 40.unitReal(), height = 40.unitReal())
-                                    )
-                            ).applyFlex(
-                                    Flex(
-                                            alignSelf = AlignSelf.CENTER
-                                    )
-                            ),
-                            Text(
-                                    text = text,
-                                    alignment = TextAlignment.CENTER,
-                                    styleId = "BottomNavigationText"
-                            ).applyFlex(
-                                    Flex(
-                                            alignSelf = AlignSelf.CENTER
-                                    )
+            child = createContainer(
+                    createImageViewFromRemote(remoteIconUrl)
+                    .applyStyle(
+                            Style(
+                                    size = Size(width = 40.unitReal(), height = 40.unitReal())
                             )
                     )
+                    .applyFlex(
+                            Flex(
+                                    alignSelf = AlignSelf.CENTER
+                            )
+                    ),
+                    createTextView(
+                            text = text,
+                            styleId = "BottomNavigationText"
+                    ).applyFlex(
+                            Flex(
+                                    alignSelf = AlignSelf.CENTER
+                            )
+                    )
+
             ).applyFlex(
                     Flex(
                             flexDirection = FlexDirection.COLUMN,
@@ -233,10 +216,8 @@ class HomeScreenBuilder : ScreenBuilder {
     )
 
     private fun buildScreen(): Screen = Screen(
-            child = Container(
-                    children = listOf(
-                            Text("hello")
-                    )
+            child = createContainer(
+                    createTextView("hello")
             )
     )
 }

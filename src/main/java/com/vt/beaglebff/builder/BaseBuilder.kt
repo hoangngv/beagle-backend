@@ -6,6 +6,7 @@ import br.com.zup.beagle.core.Style
 import br.com.zup.beagle.ext.applyStyle
 import br.com.zup.beagle.ext.unitReal
 import br.com.zup.beagle.widget.action.Action
+import br.com.zup.beagle.widget.context.ContextData
 import br.com.zup.beagle.widget.core.*
 import br.com.zup.beagle.widget.layout.Container
 import br.com.zup.beagle.widget.layout.ScrollView
@@ -16,36 +17,37 @@ import br.com.zup.beagle.widget.ui.Text
 import br.com.zup.beagle.widget.ui.TextInput
 
 abstract class BaseBuilder {
-    protected fun getTextView(text: String, styleId: String? = "NormalText") = Text(
+    protected fun createTextView(text: String, styleId: String? = "NormalText", textAlignment: TextAlignment? = TextAlignment.CENTER) = Text(
             text = text,
-            styleId = styleId
+            styleId = styleId,
+            alignment = textAlignment
     )
 
-    protected fun getTextInput(hint: String, styleId: String? = "HintText") = TextInput(
+    protected fun createTextInput(hint: String, styleId: String? = "HintText") = TextInput(
             styleId = styleId,
             placeholder = hint
     )
 
-    protected fun getContainer(vararg children: ServerDrivenComponent) = Container(
+    protected fun createContainer(vararg children: ServerDrivenComponent) = Container(
             children = children.asList()
     )
 
-    protected fun getScrollView(vararg children: ServerDrivenComponent, scrollDirection: ScrollAxis? = ScrollAxis.VERTICAL) = ScrollView(
+    protected fun createScrollView(vararg children: ServerDrivenComponent, scrollDirection: ScrollAxis? = ScrollAxis.VERTICAL) = ScrollView(
             scrollDirection = scrollDirection,
             children = children.asList()
     )
 
-    protected fun getImageViewFromRemote(remoteUrl: String, mode: ImageContentMode? = ImageContentMode.CENTER_CROP) = Image(
+    protected fun createImageViewFromRemote(remoteUrl: String, mode: ImageContentMode? = ImageContentMode.CENTER_CROP) = Image(
             path = ImagePath.Remote(remoteUrl),
             mode = mode
     )
 
-    protected fun getImageViewFromLocal(mobileId: String, mode: ImageContentMode? = ImageContentMode.CENTER_CROP) = Image(
+    protected fun createImageViewFromLocal(mobileId: String, mode: ImageContentMode? = ImageContentMode.CENTER_CROP) = Image(
             path = ImagePath.Local.justMobile(mobileId),
             mode = mode
     )
 
-    protected fun getTouchableIcon(
+    protected fun createTouchableIcon(
             remoteUrl: String,
             width: Int,
             height: Int,
@@ -64,7 +66,7 @@ abstract class BaseBuilder {
     }
 
     // circular text view
-    protected fun getCircularTextView(
+    protected fun createCircularTextView(
             text: String,
             styleId: String? = "NormalText",
             backgroundColor: String? = "#FFFFFF",
@@ -89,4 +91,11 @@ abstract class BaseBuilder {
             ),
             onPress = listAction
     )
+
+    protected fun createContextData(id: String, vararg value: Any): ContextData {
+        return ContextData(
+                id = id,
+                value = value.asList()
+        )
+    }
 }

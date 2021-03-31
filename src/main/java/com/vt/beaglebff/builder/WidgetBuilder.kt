@@ -27,31 +27,31 @@ object WidgetBuilder : BaseBuilder(){
                         arrayOf(
                                 "http://10.0.2.2:8080/resourcesController/ic_home",
                                 "Home",
-                                "/uiController/tabHome"
+                                "/screenController/tabHome"
                         ),
                         arrayOf(
                                 "http://10.0.2.2:8080/resourcesController/ic_task",
                                 "Tasks",
-                                "/uiController/tabTask"
+                                "/screenController/tabTask"
                         ),
                         arrayOf(
                                 "http://10.0.2.2:8080/resourcesController/ic_request",
                                 "Requests",
-                                "/uiController/tabRequest"
+                                "/screenController/tabRequest"
                         ),
                         arrayOf(
                                 "http://10.0.2.2:8080/resourcesController/ic_notification",
                                 "Notifications",
-                                "/uiController/tabNotification"
+                                "/screenController/tabNotification"
                         )
                 )
         )
 
-        return getContainer(BottomNavigationView(menuItems))
+        return createContainer(BottomNavigationView(menuItems))
     }
 
     // banner
-    fun createBannerView() = getContainer(
+    fun createBannerView() = createContainer(
             PageView(
                     context = ContextData(
                             id = "bannerUrl",
@@ -75,7 +75,7 @@ object WidgetBuilder : BaseBuilder(){
             )
     )
 
-    private fun createBannerImage(remoteUrl: String) = getImageViewFromRemote(
+    private fun createBannerImage(remoteUrl: String) = createImageViewFromRemote(
             remoteUrl = remoteUrl
     ).applyStyle(
             Style(
@@ -90,7 +90,7 @@ object WidgetBuilder : BaseBuilder(){
     )
 
     // toolbar
-    fun createToolbar(backgroundColor: String? = "#3596EC") = getContainer(
+    fun createToolbar(backgroundColor: String? = "#3596EC") = createContainer(
             createHeader(),
             createSearchBar()
     ).applyStyle(
@@ -100,10 +100,10 @@ object WidgetBuilder : BaseBuilder(){
     )
 
     // header
-    fun createHeader() = getContainer(
-            getTextView("Xin chào", "WhiteNormalText"),
-            getContainer(
-                    getTouchableIcon(
+    fun createHeader() = createContainer(
+            createTextView("Xin chào", "WhiteNormalText"),
+            createContainer(
+                    createTouchableIcon(
                             remoteUrl = "http://10.0.2.2:8080/resourcesController/ic_notification_white",
                             width = 30,
                             height = 30,
@@ -111,12 +111,12 @@ object WidgetBuilder : BaseBuilder(){
                                     ToastAction("Không có thông báo mới nào")
                             )
                     ),
-                    getCircularTextView(
+                    createCircularTextView(
                             text = "HN",
                             width = 44,
                             height = 44,
                             listAction = listOf(
-                                    Navigate.PushView(route = Route.Remote("/uiController/personal"))
+                                    Navigate.PushView(route = Route.Remote("/screenController/personal"))
                             )
                     )
             ).applyFlex(
@@ -143,15 +143,15 @@ object WidgetBuilder : BaseBuilder(){
     )
 
     // search bar
-    fun createSearchBar() = getContainer(
-            getImageViewFromLocal("ic_search")
+    fun createSearchBar() = createContainer(
+            createImageViewFromLocal("ic_search")
                     .applyStyle(
                             Style(
                                     size = Size(width = 24.unitReal(), height = 24.unitReal()),
                                     margin = EdgeValue(right = 11.unitReal())
                             )
                     ),
-            getTextInput("Công việc, yêu cầu, ứng dụng")
+            createTextInput("Công việc, yêu cầu, ứng dụng")
     ).applyStyle(
             Style(
                     margin = EdgeValue(horizontal = 20.unitReal(), vertical = 20.unitReal()),

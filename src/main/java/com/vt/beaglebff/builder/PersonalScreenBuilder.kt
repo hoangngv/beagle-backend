@@ -18,57 +18,55 @@ import br.com.zup.beagle.widget.core.JustifyContent
 import com.vt.beaglebff.common.CustomStyle
 import com.vt.beaglebff.components.actions.NavigateAction
 
-class PersonalScreenBuilder : ScreenBuilder {
+class PersonalScreenBuilder : ScreenBuilder, BaseBuilder() {
 
     override fun build() = Screen(
-            child = ScrollView(scrollDirection = ScrollAxis.VERTICAL,
-                    children = listOf(
-                            createTouchableRow(
-                                    text = "Thông tin tài khoản",
-                                    iconUrl = "http://10.0.2.2:8080/resourcesController/ic_account_info",
-                                    icon2Url = "http://10.0.2.2:8080/resourcesController/ic_next",
-                                    destination = "account_information"
-                            ),
-                            ItemRowDivider(
-                                    expressionOf("#B9B9B9"),
-                                    expressionOf("1")
-                            ),
-                            createTouchableRow(
-                                    text = "Cài đặt",
-                                    iconUrl = "http://10.0.2.2:8080/resourcesController/ic_settings",
-                                    icon2Url = "http://10.0.2.2:8080/resourcesController/ic_next",
-                                    destination = "settings"
-                            ),
-                            ItemRowDivider(
-                                    expressionOf("#B9B9B9"),
-                                    expressionOf("1")
-                            ),
-                            createTouchableRow(
-                                    text = "Đổi mật khẩu",
-                                    iconUrl = "http://10.0.2.2:8080/resourcesController/ic_change_password",
-                                    icon2Url = "http://10.0.2.2:8080/resourcesController/ic_next",
-                                    destination = "change_password"
-                            ),
-                            ItemRowDivider(
-                                    expressionOf("#B9B9B9"),
-                                    expressionOf("1")
-                            ),
-                            createTouchableRow(
-                                    text = "Thông tin",
-                                    iconUrl = "http://10.0.2.2:8080/resourcesController/ic_info",
-                                    icon2Url = "http://10.0.2.2:8080/resourcesController/ic_next",
-                                    destination = "information"
-                            ),
-                            ItemRowDivider(
-                                    expressionOf("#B9B9B9"),
-                                    expressionOf("1")
-                            ),
-                            createTouchableRow(
-                                    text = "Đăng xuất",
-                                    iconUrl = "http://10.0.2.2:8080/resourcesController/ic_logout",
-                                    icon2Url = "http://10.0.2.2:8080/resourcesController/ic_next",
-                                    destination = "log_out"
-                            )
+            child = createScrollView(
+                    createTouchableRow(
+                            text = "Thông tin tài khoản",
+                            iconUrl = "http://10.0.2.2:8080/resourcesController/ic_account_info",
+                            icon2Url = "http://10.0.2.2:8080/resourcesController/ic_next",
+                            destination = "account_information"
+                    ),
+                    ItemRowDivider(
+                            expressionOf("#B9B9B9"),
+                            expressionOf("1")
+                    ),
+                    createTouchableRow(
+                            text = "Cài đặt",
+                            iconUrl = "http://10.0.2.2:8080/resourcesController/ic_settings",
+                            icon2Url = "http://10.0.2.2:8080/resourcesController/ic_next",
+                            destination = "settings"
+                    ),
+                    ItemRowDivider(
+                            expressionOf("#B9B9B9"),
+                            expressionOf("1")
+                    ),
+                    createTouchableRow(
+                            text = "Đổi mật khẩu",
+                            iconUrl = "http://10.0.2.2:8080/resourcesController/ic_change_password",
+                            icon2Url = "http://10.0.2.2:8080/resourcesController/ic_next",
+                            destination = "change_password"
+                    ),
+                    ItemRowDivider(
+                            expressionOf("#B9B9B9"),
+                            expressionOf("1")
+                    ),
+                    createTouchableRow(
+                            text = "Thông tin",
+                            iconUrl = "http://10.0.2.2:8080/resourcesController/ic_info",
+                            icon2Url = "http://10.0.2.2:8080/resourcesController/ic_next",
+                            destination = "information"
+                    ),
+                    ItemRowDivider(
+                            expressionOf("#B9B9B9"),
+                            expressionOf("1")
+                    ),
+                    createTouchableRow(
+                            text = "Đăng xuất",
+                            iconUrl = "http://10.0.2.2:8080/resourcesController/ic_logout",
+                            icon2Url = "http://10.0.2.2:8080/resourcesController/ic_next",
+                            destination = "log_out"
                     )
             )
     )
@@ -76,48 +74,34 @@ class PersonalScreenBuilder : ScreenBuilder {
     private fun createTouchableRow(text: String, iconUrl: String, icon2Url: String, destination: String) : Touchable{
         return Touchable(
                 onPress = listOf(NavigateAction(destination)),
-                child = Container(
-                        children = listOf(
-                            Image(
-                                    path = ImagePath.Remote(
-                                            remoteUrl = iconUrl
-                                    )
-                            ).applyStyle(
-                                    Style(
-                                            size = Size(width = 40.unitReal(), height = 40.unitReal())
-                                    )
-                            ).applyFlex(Flex(alignSelf = AlignSelf.CENTER)),
-                            Text(
-                                    text = text,
-                                    styleId = "NormalText"
-                            ).applyStyle(
-                                    Style(
-                                            margin = EdgeValue(
-                                                    left = 16.unitReal(),
-                                                    right = 16.unitReal()
-                                            )
-                                    )
-                            ).applyFlex(
-                                    Flex(
-                                            grow = 1.0,
-                                            justifyContent = JustifyContent.FLEX_START,
-                                            alignSelf = AlignSelf.CENTER
-                                    )
-                            ),
-                            Image(
-                                    path = ImagePath.Remote(
-                                            remoteUrl = icon2Url
-                                    )
-                            )
-                            .applyStyle(
-                                    Style(
-                                            size = Size(
-                                                    width = 12.unitReal(),
-                                                    height = 12.unitReal())
-                                    )
-                            )
-                            .applyFlex(Flex(alignSelf = AlignSelf.CENTER))
+                child = createContainer(
+                        createImageViewFromRemote(iconUrl)
+                        .applyStyle(
+                                Style(
+                                        size = Size(width = 40.unitReal(), height = 40.unitReal())
+                                )
                         )
+                        .applyFlex(Flex(alignSelf = AlignSelf.CENTER)),
+                        createTextView(text)
+                        .applyStyle(
+                                Style(
+                                        margin = EdgeValue(left = 16.unitReal(), right = 16.unitReal())
+                                )
+                        )
+                        .applyFlex(
+                                Flex(
+                                        grow = 1.0,
+                                        justifyContent = JustifyContent.FLEX_START,
+                                        alignSelf = AlignSelf.CENTER
+                                )
+                        ),
+                        createImageViewFromRemote(icon2Url)
+                        .applyStyle(
+                                Style(
+                                        size = Size(width = 12.unitReal(), height = 12.unitReal())
+                                )
+                        )
+                        .applyFlex(Flex(alignSelf = AlignSelf.CENTER))
                 )
                 .applyFlex(Flex(flexDirection = FlexDirection.ROW, flexWrap = FlexWrap.NO_WRAP))
                 .applyStyle(style = CustomStyle.buttonStyle)
@@ -127,15 +111,13 @@ class PersonalScreenBuilder : ScreenBuilder {
     private fun createText(text: String)
             = Text(text).applyStyle(style = CustomStyle.textStyle)
 
-    private fun createButton(buttonText: String, remoteUrl: String, styleId: String? = "ButtonRightArrow") = Container(
-            children = listOf(
-                    Image(ImagePath.Remote(remoteUrl = remoteUrl)).applyStyle(style = CustomStyle.iconStyle),
-                    Button(
-                            text = buttonText,
-                            styleId = styleId,
-                            onPress = listOf(ToastAction(buttonText))
-                    ).applyStyle(style = CustomStyle.buttonStyle)
-            )
+    private fun createButton(buttonText: String, remoteUrl: String, styleId: String? = "ButtonRightArrow") = createContainer(
+            createImageViewFromRemote(remoteUrl).applyStyle(style = CustomStyle.iconStyle),
+            Button(
+                    text = buttonText,
+                    styleId = styleId,
+                    onPress = listOf(ToastAction(buttonText))
+            ).applyStyle(style = CustomStyle.buttonStyle)
     ).applyFlex(
             Flex(
                     flexDirection = FlexDirection.ROW,

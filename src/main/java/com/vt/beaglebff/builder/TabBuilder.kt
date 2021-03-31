@@ -12,7 +12,7 @@ import com.vt.beaglebff.model.populateData
 class TabBuilder: BaseBuilder(){
 
     // tab home
-    fun createTabHome() = getContainer(
+    fun createTabHome() = createContainer(
             WidgetBuilder.createToolbar(),
             WidgetBuilder.createBannerView()
     ).applyFlex(
@@ -24,17 +24,17 @@ class TabBuilder: BaseBuilder(){
     // tab request
     fun createTabRequest() : Container {
         val characters = populateData()
-        return getContainer(
+        return createContainer(
                 ListView(
                         context = ContextData(id = "characters", value = characters),
                         dataSource = expressionOf("@{characters}"),
-                        template = getContainer(
-                                getTextView("Name: @{item.name}"),
-                                getTextView("Race: @{item.race}"),
-                                getTextView("Mistborn: @{item.isMistborn}"),
-                                getTextView("Planet: @{item.planet}"),
-                                getTextView("sex: @{item.sex}"),
-                                getTextView("age: @{item.age}")
+                        template = createContainer(
+                                createTextView("Name: @{item.name}"),
+                                createTextView("Race: @{item.race}"),
+                                createTextView("Mistborn: @{item.isMistborn}"),
+                                createTextView("Planet: @{item.planet}"),
+                                createTextView("sex: @{item.sex}"),
+                                createTextView("age: @{item.age}")
                         ).applyStyle(
                                 Style(
                                         margin = EdgeValue(bottom = 20.unitReal())
@@ -46,20 +46,20 @@ class TabBuilder: BaseBuilder(){
 
 
     // tab task
-    fun createTabTask() = getContainer(
-            getScrollView(
-                    getTextView("Vertical ScrollView"),
-                    getTextView("Vertical ScrollView"),
-                    getTextView("Vertical ScrollView")
+    fun createTabTask() = createContainer(
+            createScrollView(
+                    createTextView("Vertical ScrollView"),
+                    createTextView("Vertical ScrollView"),
+                    createTextView("Vertical ScrollView")
             )
     )
 
     // tab notification
-    fun createTabNotification() = getContainer(
-            getScrollView(
-                    getTextView("Vertical ScrollView"),
-                    getTextView("Vertical ScrollView"),
-                    getTextView("Vertical ScrollView")
+    fun createTabNotification() = createContainer(
+            createScrollView(
+                    createTextView("Vertical ScrollView"),
+                    createTextView("Vertical ScrollView"),
+                    createTextView("Vertical ScrollView")
             )
     )
 }

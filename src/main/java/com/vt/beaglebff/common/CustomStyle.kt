@@ -5,7 +5,6 @@ import br.com.zup.beagle.ext.unitReal
 import br.com.zup.beagle.widget.core.*
 
 object CustomStyle {
-
     val buttonStyle = Style(margin = EdgeValue(
             left = 16.unitReal(),
             right = 16.unitReal(),
