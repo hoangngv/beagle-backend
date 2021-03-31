@@ -15,6 +15,7 @@ import br.com.zup.beagle.widget.layout.Container
 import br.com.zup.beagle.widget.layout.Screen
 import br.com.zup.beagle.widget.layout.ScreenBuilder
 import br.com.zup.beagle.widget.ui.*
+import com.vt.beaglebff.common.Constants
 import com.vt.beaglebff.components.actions.ToastAction
 import com.vt.beaglebff.model.GithubUser
 import com.vt.beaglebff.model.SearchContext
@@ -93,7 +94,7 @@ class MyScreen : ScreenBuilder {
                 ).applyStyle(
                     Style(
                         margin = EdgeValue(horizontal = 20.unitReal(), vertical = 8.unitReal()),
-                        backgroundColor = "#ffffff",
+                        backgroundColor = Constants.colorWhite,
                         padding = EdgeValue(horizontal = 11.unitReal()),
                         size = Size(height = 44.unitReal()),
                         cornerRadius = CornerRadius(22.0),
@@ -112,7 +113,7 @@ class MyScreen : ScreenBuilder {
                     )
                 ).applyStyle(
                     Style(
-                        backgroundColor = "#ffffff",
+                        backgroundColor = Constants.colorWhite,
                         flex = Flex(flex = 1.0),
                         cornerRadius = CornerRadius(16.0),
                         margin = EdgeValue(bottom = (-50).unitReal(), top = 10.unitReal())

@@ -10,22 +10,22 @@ import br.com.zup.beagle.widget.layout.*
 import br.com.zup.beagle.widget.navigation.Touchable
 import br.com.zup.beagle.widget.ui.Button
 import br.com.zup.beagle.widget.ui.Text
-import com.vt.beaglebff.components.actions.ToastAction
-import com.vt.beaglebff.components.widgets.ItemRowDivider
-import br.com.zup.beagle.widget.core.JustifyContent
+import com.vt.beaglebff.common.Constants
 import com.vt.beaglebff.common.CustomStyle
 import com.vt.beaglebff.components.actions.NavigateAction
+import com.vt.beaglebff.components.actions.ToastAction
+import com.vt.beaglebff.components.widgets.ItemRowDivider
 
 class PersonalScreenBuilder : ScreenBuilder, BaseBuilder() {
 
     override fun build() = Screen(
             child = createContainer(
-                    SingleComponentBuilder.createMainToolbar(),
+                    WidgetBuilder.createMainToolbar(),
                     createScrollView(
                             createTouchableRow(
                                     text = "Thông tin tài khoản",
-                                    iconUrl = "http://10.0.2.2:8080/resourcesController/ic_account_info",
-                                    icon2Url = "http://10.0.2.2:8080/resourcesController/ic_next",
+                                    iconUrl = "${Constants.baseUrl}/resourcesController/ic_account_info",
+                                    icon2Url = "${Constants.baseUrl}/resourcesController/ic_next",
                                     destination = "account_information"
                             ),
                             ItemRowDivider(
@@ -34,8 +34,8 @@ class PersonalScreenBuilder : ScreenBuilder, BaseBuilder() {
                             ),
                             createTouchableRow(
                                     text = "Cài đặt",
-                                    iconUrl = "http://10.0.2.2:8080/resourcesController/ic_settings",
-                                    icon2Url = "http://10.0.2.2:8080/resourcesController/ic_next",
+                                    iconUrl = "${Constants.baseUrl}/resourcesController/ic_settings",
+                                    icon2Url = "${Constants.baseUrl}/resourcesController/ic_next",
                                     destination = "settings"
                             ),
                             ItemRowDivider(
@@ -44,8 +44,8 @@ class PersonalScreenBuilder : ScreenBuilder, BaseBuilder() {
                             ),
                             createTouchableRow(
                                     text = "Đổi mật khẩu",
-                                    iconUrl = "http://10.0.2.2:8080/resourcesController/ic_change_password",
-                                    icon2Url = "http://10.0.2.2:8080/resourcesController/ic_next",
+                                    iconUrl = "${Constants.baseUrl}/resourcesController/ic_change_password",
+                                    icon2Url = "${Constants.baseUrl}/resourcesController/ic_next",
                                     destination = "change_password"
                             ),
                             ItemRowDivider(
@@ -54,8 +54,8 @@ class PersonalScreenBuilder : ScreenBuilder, BaseBuilder() {
                             ),
                             createTouchableRow(
                                     text = "Thông tin",
-                                    iconUrl = "http://10.0.2.2:8080/resourcesController/ic_info",
-                                    icon2Url = "http://10.0.2.2:8080/resourcesController/ic_next",
+                                    iconUrl = "${Constants.baseUrl}/resourcesController/ic_info",
+                                    icon2Url = "${Constants.baseUrl}/resourcesController/ic_next",
                                     destination = "information"
                             ),
                             ItemRowDivider(
@@ -64,15 +64,15 @@ class PersonalScreenBuilder : ScreenBuilder, BaseBuilder() {
                             ),
                             createTouchableRow(
                                     text = "Đăng xuất",
-                                    iconUrl = "http://10.0.2.2:8080/resourcesController/ic_logout",
-                                    icon2Url = "http://10.0.2.2:8080/resourcesController/ic_next",
+                                    iconUrl = "${Constants.baseUrl}/resourcesController/ic_logout",
+                                    icon2Url = "${Constants.baseUrl}/resourcesController/ic_next",
                                     destination = "log_out"
                             )
                     )
             )
     )
 
-    private fun createTouchableRow(text: String, iconUrl: String, icon2Url: String, destination: String) : Touchable{
+    private fun createTouchableRow(text: String, iconUrl: String, icon2Url: String, destination: String) : Touchable {
         return Touchable(
                 onPress = listOf(NavigateAction(destination)),
                 child = createContainer(
@@ -83,7 +83,7 @@ class PersonalScreenBuilder : ScreenBuilder, BaseBuilder() {
                                 )
                         )
                         .applyFlex(Flex(alignSelf = AlignSelf.CENTER)),
-                        createTextView(text, textAlignment = TextAlignment.LEFT)
+                        createTextView(text)
                         .applyStyle(
                                 Style(
                                         margin = EdgeValue(left = 16.unitReal(), right = 16.unitReal())

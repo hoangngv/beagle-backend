@@ -2,8 +2,6 @@ package com.vt.beaglebff.builder
 
 import br.com.zup.beagle.core.*
 import br.com.zup.beagle.ext.*
-import br.com.zup.beagle.widget.action.Navigate
-import br.com.zup.beagle.widget.action.Route
 import br.com.zup.beagle.widget.context.ContextData
 import br.com.zup.beagle.widget.context.expressionOf
 import br.com.zup.beagle.widget.core.*
@@ -13,12 +11,12 @@ import br.com.zup.beagle.widget.pager.PageIndicator
 import br.com.zup.beagle.widget.ui.*
 import com.vt.beaglebff.components.actions.ToastAction
 import br.com.zup.beagle.widget.core.JustifyContent
-import com.vt.beaglebff.Constants
+import com.vt.beaglebff.common.Constants
 import com.vt.beaglebff.components.widgets.BottomNavigationView
 import com.vt.beaglebff.components.widgets.ItemRowDivider
 
-
 class HomeScreenBuilder : ScreenBuilder, BaseBuilder() {
+
     override fun build(): Screen {
         return Screen(
                 child = createContainer(
@@ -38,8 +36,8 @@ class HomeScreenBuilder : ScreenBuilder, BaseBuilder() {
                     context = ContextData(
                             id = "bannerUrl",
                             value = listOf(
-                                    "http://10.0.2.2:8080/resourcesController/img_tnxh",
-                                    "http://10.0.2.2:8080/resourcesController/img_tnxh"
+                                    "${Constants.baseUrl}/resourcesController/img_tnxh",
+                                    "${Constants.baseUrl}/resourcesController/img_tnxh"
                             )
                     ),
                     pageIndicator = PageIndicator(
@@ -74,7 +72,7 @@ class HomeScreenBuilder : ScreenBuilder, BaseBuilder() {
                     )
             )
     ).applyStyle(
-            Style(backgroundColor = "#3596EC",
+            Style(backgroundColor = Constants.colorPrimary,
                     size = Size(width = 100.unitPercent(), height = 56.unitReal()),
                     position = EdgeValue(0.unitReal()),
                     positionType = PositionType.RELATIVE
@@ -100,19 +98,19 @@ class HomeScreenBuilder : ScreenBuilder, BaseBuilder() {
         val menuItems = ArrayList<Array<String>>()
 
         menuItems.add(arrayOf(
-                "http://10.0.2.2:8080/resourcesController/ic_account_info",
+                "${Constants.baseUrl}/resourcesController/ic_account_info",
                 "Home",
                 "/screenController/home")
         )
 
         menuItems.add(arrayOf(
-                "http://10.0.2.2:8080/resourcesController/ic_account_info",
+                "${Constants.baseUrl}/resourcesController/ic_account_info",
                 "Requests",
                 "/screenController/home")
         )
 
         menuItems.add(arrayOf(
-                "http://10.0.2.2:8080/resourcesController/ic_account_info",
+                "${Constants.baseUrl}/resourcesController/ic_account_info",
                 "Tasks",
                 "/screenController/home")
         )
@@ -139,23 +137,23 @@ class HomeScreenBuilder : ScreenBuilder, BaseBuilder() {
             createContainer(
                     createBottomButton(
                             text = "Home",
-                            remoteIconUrl = "http://10.0.2.2:8080/resourcesController/ic_account_info"
+                            remoteIconUrl = "${Constants.baseUrl}/resourcesController/ic_account_info"
                     ),
                     createBottomButton(
                             text = "Tasks",
-                            remoteIconUrl = "http://10.0.2.2:8080/resourcesController/ic_account_info"
+                            remoteIconUrl = "${Constants.baseUrl}/resourcesController/ic_account_info"
                     ),
                     createBottomButton(
                             text = "Requests",
-                            remoteIconUrl = "http://10.0.2.2:8080/resourcesController/ic_account_info"
+                            remoteIconUrl = "${Constants.baseUrl}/resourcesController/ic_account_info"
                     ),
                     createBottomButton(
                             text = "Chat",
-                            remoteIconUrl = "http://10.0.2.2:8080/resourcesController/ic_account_info"
+                            remoteIconUrl = "${Constants.baseUrl}/resourcesController/ic_account_info"
                     ),
                     createBottomButton(
                             text = "Notifications",
-                            remoteIconUrl = "http://10.0.2.2:8080/resourcesController/ic_account_info"
+                            remoteIconUrl = "${Constants.baseUrl}/resourcesController/ic_account_info"
                     )
             ).applyFlex(
                     Flex(

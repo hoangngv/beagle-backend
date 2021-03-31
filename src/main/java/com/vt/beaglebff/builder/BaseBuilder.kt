@@ -15,9 +15,10 @@ import br.com.zup.beagle.widget.ui.Image
 import br.com.zup.beagle.widget.ui.ImagePath
 import br.com.zup.beagle.widget.ui.Text
 import br.com.zup.beagle.widget.ui.TextInput
+import com.vt.beaglebff.common.Constants
 
 abstract class BaseBuilder {
-    protected fun createTextView(text: String, styleId: String? = "NormalText", textAlignment: TextAlignment? = TextAlignment.CENTER) = Text(
+    protected fun createTextView(text: String, styleId: String? = "NormalText", textAlignment: TextAlignment? = TextAlignment.LEFT) = Text(
             text = text,
             styleId = styleId,
             alignment = textAlignment
@@ -69,7 +70,7 @@ abstract class BaseBuilder {
     protected fun createCircularTextView(
             text: String,
             styleId: String? = "NormalText",
-            backgroundColor: String? = "#FFFFFF",
+            backgroundColor: String? = Constants.colorWhite,
             width: Int = 44,
             height: Int = 44,
             listAction: List<Action>

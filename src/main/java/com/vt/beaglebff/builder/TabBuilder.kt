@@ -9,7 +9,7 @@ import br.com.zup.beagle.widget.layout.Container
 import br.com.zup.beagle.widget.ui.*
 import com.vt.beaglebff.model.populateData
 
-class TabBuilder: BaseBuilder(){
+object TabBuilder: BaseBuilder(){
 
     // tab home
     fun createTabHome() = createContainer(

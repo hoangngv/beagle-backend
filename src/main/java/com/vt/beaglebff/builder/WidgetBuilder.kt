@@ -12,7 +12,13 @@ import br.com.zup.beagle.widget.context.ContextData
 import br.com.zup.beagle.widget.core.*
 import br.com.zup.beagle.widget.layout.Container
 import br.com.zup.beagle.widget.layout.PageView
+import br.com.zup.beagle.widget.navigation.Touchable
 import br.com.zup.beagle.widget.pager.PageIndicator
+import br.com.zup.beagle.widget.ui.Image
+import br.com.zup.beagle.widget.ui.ImagePath
+import br.com.zup.beagle.widget.ui.Text
+import com.vt.beaglebff.common.Constants
+import com.vt.beaglebff.components.actions.BackAction
 import com.vt.beaglebff.components.actions.ToastAction
 import com.vt.beaglebff.components.widgets.BottomNavigationView
 
@@ -25,22 +31,22 @@ object WidgetBuilder : BaseBuilder(){
         menuItems.addAll(
                 listOf(
                         arrayOf(
-                                "http://10.0.2.2:8080/resourcesController/ic_home",
+                                "${Constants.baseUrl}/resourcesController/ic_home",
                                 "Home",
                                 "/screenController/tabHome"
                         ),
                         arrayOf(
-                                "http://10.0.2.2:8080/resourcesController/ic_task",
+                                "${Constants.baseUrl}/resourcesController/ic_task",
                                 "Tasks",
                                 "/screenController/tabTask"
                         ),
                         arrayOf(
-                                "http://10.0.2.2:8080/resourcesController/ic_request",
+                                "${Constants.baseUrl}/resourcesController/ic_request",
                                 "Requests",
                                 "/screenController/tabRequest"
                         ),
                         arrayOf(
-                                "http://10.0.2.2:8080/resourcesController/ic_notification",
+                                "${Constants.baseUrl}/resourcesController/ic_notification",
                                 "Notifications",
                                 "/screenController/tabNotification"
                         )
@@ -56,8 +62,8 @@ object WidgetBuilder : BaseBuilder(){
                     context = ContextData(
                             id = "bannerUrl",
                             value = listOf(
-                                    "http://10.0.2.2:8080/resourcesController/img_tnxh",
-                                    "http://10.0.2.2:8080/resourcesController/img_tnxh"
+                                    "${Constants.baseUrl}/resourcesController/img_tnxh",
+                                    "${Constants.baseUrl}/resourcesController/img_tnxh"
                             )
                     ),
                     pageIndicator = PageIndicator(
@@ -90,7 +96,7 @@ object WidgetBuilder : BaseBuilder(){
     )
 
     // toolbar
-    fun createToolbar(backgroundColor: String? = "#3596EC") = createContainer(
+    fun createToolbar(backgroundColor: String? = Constants.colorPrimary) = createContainer(
             createHeader(),
             createSearchBar()
     ).applyStyle(
@@ -104,7 +110,7 @@ object WidgetBuilder : BaseBuilder(){
             createTextView("Xin chào", "WhiteNormalText"),
             createContainer(
                     createTouchableIcon(
-                            remoteUrl = "http://10.0.2.2:8080/resourcesController/ic_notification_white",
+                            remoteUrl = "${Constants.baseUrl}/resourcesController/ic_notification_white",
                             width = 30,
                             height = 30,
                             listAction = listOf(
@@ -155,13 +161,129 @@ object WidgetBuilder : BaseBuilder(){
     ).applyStyle(
             Style(
                     margin = EdgeValue(horizontal = 20.unitReal(), vertical = 20.unitReal()),
-                    backgroundColor = "#ffffff",
+                    backgroundColor = Constants.colorWhite,
                     padding = EdgeValue(horizontal = 11.unitReal()),
                     size = Size(height = 44.unitReal()),
                     cornerRadius = CornerRadius(22.0),
                     flex = Flex(
                             FlexDirection.ROW,
                             alignItems = AlignItems.CENTER
+                    )
+            )
+    )
+
+    // toolbar
+    fun createMainToolbar() = Container(
+            children = listOf(
+                    Touchable(
+                            child = Image(
+                                    path = ImagePath.Remote("${Constants.baseUrl}/resourcesController/ic_back")
+                            ).applyStyle(
+                                    style = Style(
+                                            size = Size(
+                                                    width = Constants.sizeIcon.unitReal(),
+                                                    height = Constants.sizeIcon.unitReal()
+                                            ),
+                                            margin = EdgeValue(
+                                                    all = 8.unitReal(),
+                                                    left = 16.unitReal()
+                                            ),
+                                            flex = Flex(
+                                                    alignSelf = AlignSelf.CENTER
+                                            )
+                                    )
+                            ),
+                            onPress = listOf(
+                                    BackAction("back")
+                            )
+                    ),
+                    Container(
+                            children = listOf()
+                    ).applyStyle(
+                            style = Style(
+                                    size = Size(
+                                            width = 20.unitReal(),
+                                            height = 20.unitReal()
+                                    )
+                            )
+                    ),
+                    Text(
+                            text = "Title",
+                            textColor = Constants.colorWhite,
+                            styleId = "TextTitleProfile"
+                    ).applyStyle(
+                            style = Style(
+                                    flex = Flex(
+                                            alignSelf = AlignSelf.CENTER
+                                    )
+                            )
+                    ),
+                    Container(
+                            children = listOf(
+                                    Touchable(
+                                            child = Image(
+                                                    path = ImagePath.Remote("${Constants.baseUrl}/resourcesController/ic_tick")
+                                            ).applyStyle(
+                                                    style = Style(
+                                                            size = Size(
+                                                                    width = Constants.sizeIcon.unitReal(),
+                                                                    height = Constants.sizeIcon.unitReal()
+                                                            ),
+                                                            margin = EdgeValue(
+                                                                    all = 8.unitReal()
+                                                            ),
+                                                            flex = Flex(
+                                                                    alignSelf = AlignSelf.CENTER
+                                                            ),
+                                                            padding = EdgeValue(
+                                                                    all = 4.unitReal()
+                                                            )
+                                                    )
+                                            ),
+                                            onPress = listOf(
+                                                    ToastAction("Click read all!")
+                                            )
+                                    ),
+                                    Touchable(
+                                            child = Image(
+                                                    path = ImagePath.Remote("${Constants.baseUrl}/resourcesController/ic_setting")
+                                            ).applyStyle(
+                                                    style = Style(
+                                                            size = Size(
+                                                                    width = Constants.sizeIcon.unitReal(),
+                                                                    height = Constants.sizeIcon.unitReal()
+                                                            ),
+                                                            margin = EdgeValue(
+                                                                    all = 8.unitReal(),
+                                                                    right = 16.unitReal()
+                                                            ),
+                                                            flex = Flex(
+                                                                    alignSelf = AlignSelf.CENTER
+                                                            )
+                                                    )
+                                            ),
+                                            onPress = listOf(
+                                                    ToastAction("Click setting!")
+                                            )
+                                    )
+                            )
+                    ).applyStyle(
+                            style = Style(
+                                    flex = Flex(
+                                            flexDirection = FlexDirection.ROW
+                                    )
+                            )
+                    )
+            )
+    ).applyStyle(
+            style = Style(
+                    flex = Flex(
+                            flexDirection = FlexDirection.ROW,
+                            justifyContent = JustifyContent.SPACE_BETWEEN
+                    ),
+                    backgroundColor = Constants.colorPrimary,
+                    size = Size(
+                            height = 50.unitReal()
                     )
             )
     )
